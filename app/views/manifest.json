@@ -1,0 +1,21 @@
+{
+    "name": "Siscolix",
+    "short_name": "Siscolix",
+    "theme_color": "#800",
+    "background_color": "#ffff00",
+    "display": "standalone",
+    "start_url": "/index",
+    "icons": [ 
+        {
+            "src": "logo_145.png",
+            "sizes": "145x145",
+            "type": "image/png"
+        },
+        {
+            "src": "logo_190.png",
+            "sizes": "190x190",
+            "type": "image/png"
+        } 
+    ]
+  }
+  

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISCOLIX - Sistema de Coleta de Lixo</title>
+    <link rel="stylesheet" type="text/css" href="/css/estilos.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="../public/css/usuarios.css"/> -->
+</head>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', async () => {
+            try {
+                let registration = await navigator.serviceWorker.register('/service-worker.js')
+                console.log('Service Worker registered:', registration);
+            } catch(error) {
+                console.log('Service Worker registration failed:', error);
+            }
+        });
+    }
+    else{
+        console.log('Não tem Service Worker')
+    }
+</script>
+<body>
+
+    <%- include('cabecalho') %>
+    <main class="telaPrincipal">
+        <section class="section_banner">
+            <div class="molduraBanner">
+                <div class="banner">
+                    teste
+
+                </div>
+                
+            </div>
+            <div class="logo">
+                <img src="img\logo.png" alt="">
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <%- include('rodape') %>
+
+</body>
+</html>

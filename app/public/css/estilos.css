@@ -1,0 +1,471 @@
+*{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+html{
+	scroll-behavior: smooth;
+}
+
+:root{
+    --corheader: #ffffcc;
+    --titulorodapeFormGrid: #005288;
+    --cinzamedio: #ccc;
+    --corfundo:  #ffffcc;
+    --cormenu:  #381717;
+    --corfontemenuheader: #248;
+    --cortexto: #000000;
+    --cormenuhover: #800;
+    --corBotaoPadrao: #248;
+    --corbody: rgb(151, 238, 151);
+}
+
+header{
+    background-color: var(--corfundo);
+	padding:  0px 5px;
+	width: 100%;
+	color:  var(--corheader);
+    position: sticky;
+    top: 0;
+}
+
+body{
+    background-color: var(--corbody);
+}
+
+  /* INICIO CABEÇALHO */
+.menuPrincipal{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.menuPrincipal a{
+    text-decoration: none;
+	color:  var(--cormenu);
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.menuPrincipal a:hover{
+    font-weight: bold;
+}
+
+  /* INICIO INDEX */
+.section_banner{
+    display: flex;
+    
+}
+.logo{
+    display: flex;
+    align-items: center;
+    
+    /* border: 1px solid #000; */
+}
+.molduraBanner{
+    margin: 10px;
+    width: 50%;
+    height: 60vh;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #228280;
+}
+.banner{
+    width: 100%;
+    height: 57vh;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #fff;
+}
+/*FIM INDEX */
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	background:#4d4949;
+	padding:10px 10px;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 0px 0px 10px 10px;
+    margin-bottom: 0px;
+}
+
+  /* INICIO DA TELA PADRÃO */
+.telaPrincipal{
+    height: 87.5vh;
+    padding: 10px;
+}
+
+.cabecalhoTela{
+    display: flex;
+    justify-content: space-between;
+    height: 10vh;
+}
+.cabecalhoTelaLeft{
+    display: flex;
+    width: 50%;
+    height: 8vh;
+    
+}
+.cabecalhoTelaRight{
+    display: flex;
+    justify-content: end;
+    flex-direction: row;
+    width: 50%;
+    font-size: 20px;
+    height: 8vh;
+    align-items: center;
+}
+.cabecalhoTelaRight button{
+    margin-right: 10px;
+    background-color: var(--corbody);
+    cursor: pointer;
+    padding-top: 5px;
+
+    border: 1px solid #008;
+    
+}
+.cabecalhoTelaRight input{
+    font-size: 20px;
+    margin-right: 10px;
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 10px;
+}
+.tituloCabecalho{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    width: 80%;
+    border-radius: 0px 25px 25px 0px;
+    background-color: #005288;
+    color: fff;
+    padding: 5px;
+}
+.iconeTela{
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+    border-radius: 100%;
+    padding: 8px;
+    background-color: #005288;
+
+    /* border: 1px solid #008; */
+}
+.iconeTela img{
+    width: 40px;
+}
+
+/* INICIO PAGINA CRONOGRAMAS */
+.pesquisaCronogramaBairros{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 2px;
+    margin-right: 10px;
+    font-weight: bold;
+
+}
+.pesquisaCronogramaBairros input{
+    margin-left: 5px;
+    width: 50%;
+    border-radius: 10px;
+
+    font-size: 20px;
+    padding:10px;
+}
+.pesquisaCronogramaBairros button{
+    background-color: var(--corbody);
+    
+}
+.pesquisaCronogramaBairros img{
+    cursor: pointer;
+    margin-left: 5px;
+}
+.gridCronograma{
+    border: 1px solid #800;
+}
+.gridCronograma table{
+    /* border: 1px solid #008; */
+    width: 100%;
+}
+
+.gridCronograma table th{
+    width: 33%;
+    border: 1px solid hsl(300, 100%, 27%);
+}
+
+.gridCronograma  tr{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.listaCronograma tr td{
+    grid-row: auto;
+    margin-left: 20px;
+    padding-left: 20px;
+} */
+
+    /* Estilo zebrado */
+.linhasCronograma tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
+
+.linhasCronograma tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+
+.linhasCronograma tr:hover {
+      background-color: #ddd; /* Efeito hover */
+    }
+
+  /* INICIO PAGINA CONTATOS */
+
+
+.div_contatos{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    padding: 10px;
+    
+    /* border: 1px solid #000; */
+}
+.div_botoesContatos{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 60%;
+    height: 70vh;
+    padding: 20px;
+    
+    /* border: 1px solid #080; */
+}
+.div_botoesContatos button{
+    width: 80%;
+    background-color: #B2D2A4;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+
+    /* border: 1px solid #088; */
+}
+.div_botoesContatos button:hover{
+    background-color: #228280;
+}
+.div_botoesContatos button a{
+    text-decoration: none;
+	color:  var(--cormenu);
+    font-size: 18px;
+}
+.div_botoesContatos button a:hover{
+    text-decoration: none;
+	color:  var(--cormenu);
+    font-size: 18px;
+    font-weight: bold;
+
+}
+
+.detalhesContatos{
+    width: 40%;
+    height: 70vh;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #008;
+}
+
+.div_tituloFormularioEmail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.div_campoFormulario{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom:15px;
+    font-size: 20px;
+}
+.div_campoFormulario input,textarea{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.div_rodapeFormularioEmail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao_padrao{
+    width: 100px;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-left: 20px;
+    color: fff;
+	background-color:  var(--corBotaoPadrao);
+    cursor: pointer;
+}
+.botao_padrao:hover{
+    background-color: #228280;
+    font-weight: bold;
+}
+
+.div_formularioEmail{
+    margin-top: 10px;
+}
+.div_foneZap{
+    margin-top: 50px;
+}
+
+.div_redesSocial{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 10px;
+    width: 80%;
+}
+.div_redesSocial img{
+    width: 50px;
+}
+.youtube img{
+    width: 100px;
+    
+}
+/* PAGINA ADMINISTRAÇÃO */
+
+.menuLateral{
+    position: absolute;
+    top: 110px;
+    left: 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 245px;
+    height: 76.5vh;
+    transition: all 0.9s;
+    
+    /* border: 1px solid #8008; */
+}
+
+.ocultar{
+    left: -210px !important;
+    /* transition: all 0.6; */
+    transition: all 0.9s;
+
+}
+.menuItens{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ccc;
+    height: 100%;
+
+    /* border: 1px solid #00f; */
+}
+.btn_menuItem{
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px 15px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: #888;
+    text-align: center;
+    color: #fff;
+
+    /* border: 1px solid #0f0; */
+}
+
+/* INICIO CONFIRGURAÇÕES */
+
+.gridConfiguracoes{
+    border: 1px solid #800;
+}
+.gridConfiguracoes table{
+    width: 100%;
+}
+
+.gridConfiguracoes table th{
+    width: 33%;
+    border: 1px solid hsl(300, 100%, 27%);
+}
+
+.gridConfiguracoes  tr{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.listaConfiguracoes tr td{
+    grid-row: auto;
+    margin-left: 20px;
+    padding-left: 20px;
+} 
+
+    /* Estilo zebrado */
+.linhasConfiguracoes tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.linhasConfiguracoes tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.linhasConfiguracoes tr:hover {
+    background-color: #ddd; /* Efeito hover */
+}
+
+.trlista{
+    display: grid;
+
+}
+
+.chave{
+    display: flex;
+    justify-content: center;
+    margin-left:0px ;
+    padding: 5px;
+
+    /* border: 1px solid #008; */
+}
+.registro{
+
+    /* border: 1px solid #008; */
+}
+.acoes{
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid #008; */
+}
+/* 
+.trlista{
+    border: 1px solid #808;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+
+}
+
+*/
+/* 
+*/
+.acoes img{
+    width: 25px;
+    margin-left: 10px;
+    cursor: pointer;
+    
+}
