@@ -402,17 +402,14 @@ footer{
 }
 
 .gridConfiguracoes  tr{
-    display: flex;
-    justify-content: space-around;
     margin-bottom: 2px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
 .listaConfiguracoes tr td{
-    grid-row: auto;
-    margin-left: 20px;
-    padding-left: 20px;
+    /* margin-left: 20px;
+    padding-left: 20px; */
 } 
 
     /* Estilo zebrado */
@@ -433,39 +430,34 @@ footer{
 
 }
 
-.chave{
-    display: flex;
-    justify-content: center;
-    margin-left:0px ;
-    padding: 5px;
+.chave, .registro{
+    padding: 1em;
 
-    /* border: 1px solid #008; */
-}
-.registro{
-
-    /* border: 1px solid #008; */
 }
 .acoes{
     width: 100px;
-    display: flex;
-    justify-content: center;
-    /* border: 1px solid #008; */
+    text-align: center;
 }
-/* 
-.trlista{
-    border: 1px solid #808;
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-
-}
-
-*/
-/* 
-*/
 .acoes img{
     width: 25px;
     margin-left: 10px;
     cursor: pointer;
     
+}
+
+/* INICIO ARTIGOS */
+
+.artigo{
+    
+    border: 1px solid #008;
+}
+
+.artigoImg{
+
+    border: 1px solid #808;
+}
+.artigoImg img{
+
+
+    border: 1px solid #800;
 }

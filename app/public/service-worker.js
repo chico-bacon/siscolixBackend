@@ -1,13 +1,15 @@
 self.addEventListener('install', function(event) {
     console.log('Instalando!');
     event.waitUntil(
-        caches.open('cache-v1').then(function(cache) {
+        caches.open('cache-v1.01').then(function(cache) {
             return cache.addAll([
                 '/',
                 '/index',
                 '/img/logo.png',
                 '/css/estilos.css',
-                '/cronogramas'
+                '/cronogramas',
+                '/artigos',
+                '/contatos'
                 // '/autor.html'                
             ]);     
         })   
