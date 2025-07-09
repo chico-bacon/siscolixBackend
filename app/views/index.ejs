@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SISCOLIX - Sistema de Coleta de Lixo</title>
     <link rel="stylesheet" type="text/css" href="/css/estilos.css"/>
+    <link rel="manifest" href="/manifest.json">
     <!-- <link rel="stylesheet" type="text/css" href="../public/css/usuarios.css"/> -->
 </head>
 <script>
@@ -25,25 +26,59 @@
 <body>
 
     <%- include('cabecalho') %>
-    <main class="telaPrincipal">
+    <div class="banner">
+
+    </div>
+    <main>
         <section class="section_banner">
-            <div class="molduraBanner">
-                <div class="banner">
-                    teste
-
+            <%- include('slider') %>
+        </section>
+        <section class="cronogramaIndex">
+            <div class="cronogramaIndexTitulo">
+                <p>Cronograma dos Caminhões de Coleta por Bairro...</p>
+            </div>
+            <div class="cronogramaAnimacao">
+                <div class="logoAndando">
+                    <img src="img/veiculo_rotas.png" alt="">
+                    <p class="pBairro">Bairro</p>
+                    <p class="pDias">Dias</p>
+                    <p class="pTurno">Turno</p>
                 </div>
-                
+                <div class="logoAndando">
+                    <img src="img/veiculo_rotas.png" alt="">
+                    <p class="pBairro">Bairro</p>
+                    <p class="pDias">Dias</p>
+                    <p class="pTurno">Turno</p>
+                </div>
+                <div class="logoAndando">
+                    <img src="img/veiculo_rotas.png" alt="">
+                    <p class="pBairro">Bairro</p>
+                    <p class="pDias">Dias</p>
+                    <p class="pTurno">Turno</p>
+                </div>
+                <div class="logoAndando">
+                    <img src="img/veiculo_rotas.png" alt="">
+                    <p class="pBairro">Bairro</p>
+                    <p class="pDias">Dias</p>
+                    <p class="pTurno">Turno</p>
+                </div>
+                <div class="logoAndando">
+                    <img src="img/veiculo_rotas.png" alt="">
+                    <p class="pBairro">Bairro</p>
+                    <p class="pDias">Dias</p>
+                    <p class="pTurno">Turno</p>
+                </div>
             </div>
-            <div class="logo">
-                <img src="img\logo.png" alt="">
 
-            </div>
+        </section>
+        <section class="mapaSite">
 
         </section>
 
     </main>
 
     <%- include('rodape') %>
+    <!-- <script type="text/javascript" src="../lib/slider.js"></script> -->
 
 </body>
 </html>

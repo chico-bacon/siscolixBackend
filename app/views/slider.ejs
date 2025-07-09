@@ -1,0 +1,154 @@
+<div class="slider">
+
+	<div class="slides"> 
+		<img src="img/slides/img1.jpg"  alt="Imagem #1">
+		<img src="img/slides/img2.jpg"  alt="Imagem #2">
+		<img src="img/slides/img3.jpg"  alt="Imagem #3">
+		<img src="img/slides/img4.jpg"  alt="Imagem #4">
+		<img src="img/slides/img5.jpg"  alt="Imagem #5">
+		<button class="prev" onclick="prevSlide()">&#10094</button>
+		<button class="next" onclick="nextSlide()">&#10095</button>
+	</div>
+</div> 
+<div class="col1">
+	<!-- <p>Descarte Correto De Lixo</p> -->
+	<div class="imagemVideo">
+		<a href="https://youtu.be/oarmR81ohSo?si=UVzDycucNglWGP_z" target="_blank"><img src="img/fotos/descarte_correto.jpg" alt=""></a>
+	</div>
+	<div class="textoVideo">
+		<p>Descarte Consciente...</p>
+		<p>Cidade Mais Limpa...</p>
+		<p>A Natureza agradece...</p>
+	</div>
+</div>
+<div class="col2">
+	<div class="dicas">
+		<p>Você sabia!!!</p>
+		<p>Ajude a Conservar Sua Cidade Limpa...</p>
+		<p>Aprenda a Utilizar Alguns Restos Orgânicos...</p>
+		<p>Evite Insetos e Pragas indesejáveis...</p>
+		<p>Aprenda a fazer uma composteira simples e fácil..</p>
+		<p>Seu óleo de cozinha usado, pode virar dinheiro...</p>
+		<p>Papelão em plantas em geral. Quais os benefícios...</p>
+	</div>
+
+</div>
+
+<script>
+	const slides = document.querySelectorAll(".slides img");
+	let slideIdex = 0;
+	let intervaloId = null;
+	let contador = 0;
+	
+	document.addEventListener("DOMContentLoaded",inicalizaSlider);
+	
+	function inicalizaSlider(){
+		if(slides.length >= 0){
+			slides[slideIdex].classList.add("displaySlide");
+			intervaloId = setInterval(nextSlide, 5000);
+		}
+	}
+
+	function mostrarSlide(index){
+		if(index >= slides.length){
+			slideIdex = 0;
+		}
+		else if(index < 0){
+			slideIdex = slides.length -1;
+		}
+
+		slides.forEach(slide => {
+			slide.classList.remove("displaySlide");
+		});
+		slides[slideIdex].classList.add("displaySlide");
+	}
+
+	function prevSlide(){
+		slideIdex--;
+		mostrarSlide(slideIdex);
+	}
+
+	function nextSlide(){
+		slideIdex++;
+		mostrarSlide(slideIdex);
+	}
+
+</script>
+
+
+
+
+
+
+<!-- 
+<div id="slider">
+	<img id="b1" class="img_slider fade" src="img/slides/img1.jpg"  alt="">
+	<img id="b2" class="img_slider fade" src="img/slides/img2.jpg"  alt="">
+	<img id="b3" class="img_slider fade" src="img/slides/img3.jpg"  alt="">
+	<img id="b4" class="img_slider fade" src="img/slides/img4.jpg"  alt="">
+	<img id="b5" class="img_slider fade" src="img/slides/img5.jpg"  alt="">
+</div>	
+ -->
+
+
+	<!-- <img id="b2" src="img/slides/slide2.jpg" style="" class="">
+	<img id="b1" src="img/slides/slide1.jpg" style="" class="">
+	<img id="b3" src="img/slides/slide3.jpg" style="" class="">
+	<img id="b4" src="img/slides/slide4.jpg" style="" class="">
+	<img id="b5" src="img/slides/slide5.jpg" style="" class=""> -->
+	
+<!-- 
+	<a class="btnProximo" onclick="mudarSlide(1)">&rsaquo;</a>
+	<a class="btnAnterior" onclick="mudarSlide(-1)">&lsaquo;</a>
+-->
+
+<!--SEÇÃO 
+		<section class="slideShow-conteiner">
+			<div class="slide fade">
+				<div class="numeroSlide">1/5</div>
+				<img src="slide1.jpg" style="width:100%" class="imgSlide">
+				<div class="textoSlide">Slide 1</div>
+			</div>
+
+			<div class="slide fade">
+				<div class="numeroSlide">2/5</div>
+				<img src="slide2.jpg" style="width:100%" class="imgSlide">
+				<div class="textoSlide">Slide 2</div>
+			</div>
+
+			<div class="slide fade">
+				<div class="numeroSlide">3/5</div>
+				<img src="slide3.jpg" style="width:100%" class="imgSlide">
+				<div class="textoSlide">Slide 3</div>
+			</div>
+
+			<div class="slide fade">
+				<div class="numeroSlide">4/5</div>
+				<img src="slide4.jpg" style="width:100%" class="imgSlide">
+				<div class="textoSlide">Slide 4</div>
+			</div>
+
+			<div class="slide fade">
+				<div class="numeroSlide">5/5</div>
+				<img src="slide5.jpg" style="width:100%" class="imgSlide">
+				<div class="textoSlide">Slide 5</div>
+			</div>
+			
+		</section>
+		1 - SLIDES---->
+		<!-- 		
+			<section style="text-align:center">
+				<span class="indicador" onclick="slideAtual(1)"></span>
+				<span class="indicador" onclick="slideAtual(2)"></span>
+				<span class="indicador" onclick="slideAtual(3)"></span>
+				<span class="indicador" onclick="slideAtual(4)"></span>
+				<span class="indicador" onclick="slideAtual(5)"></span>
+			</section>
+</section>-->
+<!-- <script type="text/javascript" src="../lib/slider.js"></script> -->
+
+
+
+	<!-- </body>
+</html>
+</html> -->
