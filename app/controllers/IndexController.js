@@ -1,5 +1,5 @@
-const express = require('express');
-class IndexController {
+export class IndexController {
+    /*
     getRouter() {
         const rotas = express.Router();
         rotas.get([
@@ -10,10 +10,8 @@ class IndexController {
         });
         return rotas;
     }
-
+*/
     index(request, response) {
         response.render('index');
     }
 }
-
-module.exports = IndexController;

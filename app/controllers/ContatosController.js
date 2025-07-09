@@ -1,5 +1,6 @@
-const express = require('express');
-class ContatosController {
+
+export class ContatosController {
+    /*
     getRouter() {
         const rotas = express.Router();
         rotas.get([
@@ -10,10 +11,8 @@ class ContatosController {
         });
         return rotas;
     }
-
+*/
     contatos(request, response) {
         response.render('contatos');
     }
 }
-
-module.exports = ContatosController;

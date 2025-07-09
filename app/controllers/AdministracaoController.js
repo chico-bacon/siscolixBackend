@@ -1,5 +1,5 @@
-const express = require('express');
-class AdministracaoController {
+export class AdministracaoController {
+    /*
     getRouter() {
         const rotas = express.Router();
         rotas.get([
@@ -10,10 +10,8 @@ class AdministracaoController {
         });
         return rotas;
     }
-
+    */
     administracao(request, response) {
         response.render('administracao');
     }
 }
-
-module.exports = AdministracaoController;
