@@ -1,0 +1,87 @@
+<div class="cabecalhoCadastro">
+    <p>Cadastro de Artigos</p>
+    <div class="filtrar">
+        <label for="filtrar">Filtrar por:</label>
+        <input type="text" name="filtrar" id="filtrar">
+    </div>
+    <div class="pesquisar">
+        <button><img src="img\icons\search.svg" alt="" title="Pesquisar"></button>
+        <button id="novoRegistro"><img src="img\icons\add.svg" alt="" title="Novo Registro"></button>
+    </div>
+</div>
+
+<div class="listaDados">
+    <table class="tbLista">
+        <tr class="cabecalhoLista">
+            <th class="thId">id</th>
+            <th class="thDescricao">Descrição</th>
+            <th class="thDescricao">Bairro</th>
+            <th class="thSituacao">Periodicidade</th>
+            <th class="thSituacao">Turno</th>
+            <th class="thSituacao">Situação</th>
+            <th class="thAcoes">Ações</th>
+            <!-- <th></th>
+            <th></th> -->
+        </tr>
+        <tbody  class="linhasCronograma">   
+            <tr v-for="cronograma in listaCronogramas" :key="cronograma.id">
+                <td class="tdId">{{ cronograma.id }}</td>
+                <td class="tdDescricao">{{ cronograma.descricao }}</td>
+                <td class="tdDescricao">{{ cronograma.bairro }}</td>
+                <td class="tdDescricao">{{ cronograma.periodicidade }}</td>
+                <td class="tdDescricao">{{ cronograma.turno }}</td>
+                <td class="tdSituacao">{{ cronograma.situacao }}</td>
+                <td class="tdAcoes">
+                    <img src="/img/icons/visualizar.svg" @click="visualizar">
+                    <img src="/img/icons/editar.svg" @click="editar">
+                    <img src="/img/icons/deletar.svg"  @click="excluir">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<!-- ocultaTelaPopupCadastro -->
+<div id="telaPopupCadastro" class="telaPopupCadastro ocultaTelaPopupCadastro"> 
+    <div class="telaFormCadastro">
+        <h1>Novo Cadastro de Cronograma</h1>
+        <div class="formCadastro">
+            <form action="">
+                <span>
+                    <label for="descricao">Descrição</label>
+                    <input type="text" id="descricao">
+                </span>
+                <span>
+                    <label for="bairro">Bairro</label>
+                    <select name="bairro">
+                        <!-- <option value=""></option> -->
+                        <option value="1">Centro</option>
+                        <option value="2">Carlotas</option>
+                        <option value="3">Torre</option>
+                    </select>
+                </span>
+                <span>
+                    <label for="periodicidade">Periodicidade</label>
+                    <input type="text" id="periodicidade">
+                </span>
+                <span>
+                    <label for="turno">Turno</label>
+                    <input type="text" id="turno">
+                </span>
+                <span>
+                    <label for="situacao">Situação</label>
+                    <select name="situacao">
+                        <option value="0">Inatívo</option>
+                        <option value="1">Ativo</option>
+                    </select>
+                </span>
+            </form>
+            <div class="div_botoesCadastro">
+                <button id="gravar" class="botaoPadrao">Gravar</button>
+                <button id="cancelar" class="botaoPadrao">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

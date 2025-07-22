@@ -24,11 +24,24 @@
     }
 </script>
 <body>
-
+    <nav class="menuMobile">
+        <a href="/index">Home</a>
+        <a href="/cronogramas">Cronograma de Coleta</a>
+        <a href="#">Serviços</a>
+        <a href="/artigos">Artigos</a>
+        <!-- <a href="#">Ajuda</a> -->
+        <a href="/contatos">Contatos</a>
+        <a href="#">Quem Somos</a>
+        <!-- <a href="#">Área do Contribuinte</a> -->
+        <a href="/login">Login</a>
+        <!-- <a href="#">Área do Restrita</a> -->
+    </nav>
+    
     <%- include('cabecalho') %>
-    <div class="banner">
+    <!-- <div class="banner">
 
-    </div>
+
+    </div> -->
     <main>
         <section class="section_banner">
             <%- include('slider') %>
@@ -70,9 +83,61 @@
                 </div>
             </div>
 
+            <div class="cronMap"></div>
         </section>
         <section class="mapaSite">
-
+            <div class="colunaMapa">
+                <div class="linhaMapa">
+                    <a href="/index">Home</a>
+                </div>
+                <div class="linhaMapa"></div>
+                <div class="linhaMapa">
+                    <a href="/cronogramas">Cronograma de Coleta</a>
+                </div>
+                <div class="linhaMapa"></div>
+            </div>
+            <div class="colunaMapa">
+                <div class="linhaMapa">
+                    <a href="#">Serviços</a>
+                </div>
+                <div class="linhaMapa"></div>
+                <div class="linhaMapa">
+                    <a href="/artigos">Artigos</a>
+                </div>
+                <div class="linhaMapa"></div>
+            </div>
+            <div class="colunaMapa">
+                <div class="linhaMapa">
+                    <a href="#">Ajuda</a>
+                </div>
+                <div class="linhaMapa"></div>
+                <div class="linhaMapa">
+                    <a href="#">Localização da Secretaria</a>
+                </div>
+                <div class="linhaMapa"></div>
+            </div>
+            <div class="colunaMapa">
+                <div class="linhaMapa">
+                    <a href="/contatos">Contatos</a>
+                </div>
+                <div class="linhaMapa"></div>
+                <div class="linhaMapa">
+                    <a href="#">Quem Somos</a>
+                </div>
+                <div class="linhaMapa"></div>
+            </div>
+            <div class="colunaMapa">
+                <div class="linhaMapa">
+                    <a href="#">Área do Contribuinte</a>
+                </div>
+                <div class="linhaMapa"></div>
+                <div class="linhaMapa">
+                    
+                    <a href="/login">Login</a>
+                    <!-- <a href="#">Área do Restrita</a> -->
+                </div>
+                <div class="linhaMapa"></div>
+            </div>
         </section>
 
     </main>
