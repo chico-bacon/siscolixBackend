@@ -250,8 +250,7 @@ img.displaySlide{
 .dicas a:hover{
     font-weight: bold;
 }
-.dicas{
-}
+
 /* FIM BANNER */
 
 footer{
@@ -378,6 +377,7 @@ footer{
 .formularioLogin{
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     width: 400px;
     height: 60vh;
@@ -408,7 +408,7 @@ footer{
     border-radius: 0px 10px 10px 0px;
 }
 .formularioLogin form img{
-    width: 14%;
+    width: 12.5%;
     background: #fff;
 }
 .alterarSenha{
@@ -416,6 +416,10 @@ footer{
     justify-content: space-around;
     margin-bottom: 10px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.formularioLogin img{
+    /* margin-top: -20px; */
+    width: 28%;
 }
 
 /* INICIO PAGINA CRONOGRAMAS */
