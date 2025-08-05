@@ -14,7 +14,6 @@ html{
     --cormenu: #aaa;
     --corfundo:  rgb(165, 230, 165);
     --titulorodapeFormGrid: #005288;
-    /* --cinzamedio: #ccc; */
     --cortexto: #000000;
     --cormenuhover: #800;
     --corBotaoPadrao: #248;
@@ -39,7 +38,6 @@ body{
     justify-content: space-between;
     padding: 5px;
 }
-
 .menuPrincipal a{
     color:  var(--corfontemenuheader);
     text-decoration: none;
@@ -50,9 +48,27 @@ body{
 .menuPrincipal a:hover{
     font-weight: bold;
 }
+.menuMobile{
+    display: none;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+.menuMobile a{
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    padding: 10px;
+    margin: 5px;
+    background: var(--corfundo);
+    border-radius: 10px;
+}
 
 /* INICIO INDEX */
-
 .section_banner{
     display: flex;
     margin-top: 10px;
@@ -61,16 +77,12 @@ body{
     border-radius: 15px 15px 0px  0px;
     height: 70vh;
     background-color: var(--corfundo);   
-
-    /* border: #000 solid 1px; */
 }
 
 .col1, .col2{
     margin: 10px;
     padding: 10px;
 	width: 25%;
-
-    
 }
 .col1, .col2 p{
     font-weight: bold;
@@ -82,16 +94,13 @@ body{
 .imagemVideo{
     width: 100%;
     margin-top: 5px;
-    
 }
 .imagemVideo a img{
     width: 100%;
     border-radius: 10px;
-    
 }
 .textoVideo{
     background-color: #ffffff;   
-    /* background-color: var(--corbody);    */
     width: 100%;
     margin-top: 5px;
     border-radius: 10px;
@@ -99,12 +108,6 @@ body{
 .textoVideo p{
     font-family: Georgia;
     padding: 10px;
-    /* font-family: Cambria; */
-    /* , , , , '', serif     */    
-/* font-family: Cochin; */
-/* font-family: Times; */
-/* font-family: Times New Roman; */
-/* font-family: Cochin; */
 }
 .col2{
     display: flex;
@@ -112,32 +115,12 @@ body{
     flex-direction: column;
     align-items: center;
     font-family: Georgia;
-    
-}
-.dicas{
-    /* background-color: var(--corbody);    */
-    background-color: #ffffff;   
-    border-radius: 10px;
-    padding: 10px;
-}
-.dicas p{
-    padding-bottom: 20px;
-    
 }
 .cronogramaIndex{
-    /* display: flex; */
     align-items: center;
-
-    /* margin-top: 10px; */
     margin-left: 30px;
     margin-right: 30px;
-    /* border-radius: 15px 15px 0px  0px; */
-    /* height: 70vh; */
     background-color: var(--corfundo);   
-
-    /* border: #000 solid 1px; */
-
-
 }
 .cronogramaIndexTitulo{
     background-color: hsla(0, 0%, 0%, 0.5);
@@ -146,20 +129,15 @@ body{
     align-items: center;
     text-align: center;
     padding: 10px;
-    /* border: #000 solid 1px; */
 }
 
 .cronogramaAnimacao{
     padding: 10px;
     display: flex;
     border-radius: 0px  0px 15px 15px;
-
-    
-    border: #000 solid 1px;
 }
 .logoAndando{
     width: 20%;
-    border: #000 solid 1px;
 }
 .logoAndando img{
     width: 100%;
@@ -180,24 +158,48 @@ body{
     top: 96%;
     margin-left: 100px;
 }
-.mapaSite{
-    margin-top: 80px;
-    background-color: hsla(0, 0%, 0%, 0.5);
-
-    height: 200px;
-    border: #800 solid 1px;
+.cronMap{
+    height: 50px;
+    background: linear-gradient(to bottom, var(--corfundo), var(--corbody));    
 }
-/*FIM INDEX */
 
-/* INICIO SLIDER */
+.mapaSite{
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, var(--corbody), #4d4949);
+    height: 150px;
+}
+
+/* INICIO DO MAPA DO SITE */
+.colunaMapa{
+    width: 20%;
+    height: 100px;
+}
+.linhaMapa{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.linhaMapa a{
+    text-decoration: none;
+    color: #000;
+    font-family: Georgia;
+}
+.linhaMapa a:hover{
+    font-weight: bold;
+}
+  /* FIM DO MAPA DO SITE */
+/*FIM INDEX */
+/* INICIO BANNER */
+  /* INICIO SLIDER */
 .slider{
     margin: 10px;
     padding: 10px;
 	width: 50%;
-
 }
-
-
 .slides img{
     display: none;
     border-radius: 15px;
@@ -206,8 +208,6 @@ body{
 .slider button{
     position: absolute;
     top: 40%;
-    /* margin-left: 52px; */
-
     transform: translateY(-50%);
     font-size: 1rem;
     background-color: hsla(0, 0%, 0%, 0.5);
@@ -220,7 +220,7 @@ body{
 img.displaySlide{
     display: block;
     animation-name: fade;
-    animation-duration: 3.5s;
+    animation-duration: 5.5s;
 }
 
 .prev{
@@ -231,41 +231,67 @@ img.displaySlide{
     border-radius: 5px 0 0 5px;
 }
 @keyframes fade {
-    from {opacity: .5;}
+    from {opacity: .01;}
     to {opacity: 2;}
 }
-
   /* FIM SLIDER */
 
+  .dicas{
+    border-radius: 10px;
+    padding: 10px;
+    background: var(--corbody);
+}
+.dicas a{
+    text-decoration: none;
+    font-family: Georgia;
+    color: #000;
+    margin-bottom: 5px;
+}
+.dicas a:hover{
+    font-weight: bold;
+}
+
+/* FIM BANNER */
 
 footer{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 	background:#4d4949;
 	padding:10px 10px;
     color: #fff;
-    font-size: 20px;
+    font-family: Georgia;
+    font-size: 1em;
     border-radius: 0px 0px 10px 10px;
     margin-bottom: 0px;
 }
 
-  /* INICIO DA TELA PADRÃO */
+/* INICIO DA TELA PADRÃO */
+.bodyCadastro{
+    overflow: hidden;
+}
 .telaPrincipal{
     height: 87.5vh;
-    padding: 10px;
+    /* padding-left: 10px; */
+    padding-top: 10px;
+    background-color: var(--corfundo);
+
+    /* border: 1px solid #008; */
 }
 
 .cabecalhoTela{
     display: flex;
     justify-content: space-between;
     height: 10vh;
+    flex-wrap: wrap;
+
 }
 .cabecalhoTelaLeft{
     display: flex;
     width: 50%;
     height: 8vh;
-    
+    flex-wrap: wrap;
 }
 .cabecalhoTelaRight{
     display: flex;
@@ -275,15 +301,12 @@ footer{
     font-size: 20px;
     height: 8vh;
     align-items: center;
+    flex-wrap: wrap;
 }
 .cabecalhoTelaRight button{
     margin-right: 10px;
-    background-color: var(--corbody);
     cursor: pointer;
     padding-top: 5px;
-
-    border: 1px solid #008;
-    
 }
 .cabecalhoTelaRight input{
     font-size: 20px;
@@ -294,7 +317,6 @@ footer{
 }
 .tituloCabecalho{
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     width: 80%;
     border-radius: 0px 25px 25px 0px;
@@ -309,11 +331,95 @@ footer{
     border-radius: 100%;
     padding: 8px;
     background-color: #005288;
-
-    /* border: 1px solid #008; */
 }
 .iconeTela img{
     width: 40px;
+}
+
+.botoesEntrarCancelar{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.botaoPadrao{
+    text-decoration:none;
+	display:flex;
+	width:150px;
+	height:30px;
+	margin: 5px;
+	padding: 5px;
+    background-color: #005288;
+	border-radius:10px;
+	color: #fff;
+	font-family:Georgia, 'Times New Roman', Times, serif;
+	font-size:20px;
+	cursor:pointer;
+	border:0px;
+	text-transform: uppercase;
+	outline:none;
+	justify-content:center;
+	align-items:center;
+}
+.botaoPadrao:hover{
+    background-color:#c22;
+	color:#fff;
+}
+
+/* INICIO TELA LOGIN */
+.corpoTela{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 80vh;
+    /* border: 1px solid #000; */
+}
+.formularioLogin{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 60vh;
+    border-radius: 25px;
+    background: var(--corbody);
+    /* margin-right: 10px; */
+    /* border: 1px solid #800; */
+}
+.formularioLogin form{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    margin: 20px;
+}
+.formularioLogin form span{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.formularioLogin form input{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+    padding: 10px;
+    width: 90%;
+    border-radius: 0px 10px 10px 0px;
+}
+.formularioLogin form img{
+    width: 12.5%;
+    background: #fff;
+}
+.alterarSenha{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.formularioLogin img{
+    /* margin-top: -20px; */
+    width: 28%;
 }
 
 /* INICIO PAGINA CRONOGRAMAS */
@@ -325,19 +431,16 @@ footer{
     padding: 2px;
     margin-right: 10px;
     font-weight: bold;
-
 }
 .pesquisaCronogramaBairros input{
     margin-left: 5px;
     width: 50%;
     border-radius: 10px;
-
     font-size: 20px;
     padding:10px;
 }
 .pesquisaCronogramaBairros button{
     background-color: var(--corbody);
-    
 }
 .pesquisaCronogramaBairros img{
     cursor: pointer;
@@ -386,8 +489,6 @@ footer{
     width: 60%;
     height: 70vh;
     padding: 20px;
-    
-    /* border: 1px solid #080; */
 }
 .div_botoesContatos button{
     width: 80%;
@@ -395,8 +496,6 @@ footer{
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 10px;
-
-    /* border: 1px solid #088; */
 }
 .div_botoesContatos button:hover{
     background-color: #228280;
@@ -411,7 +510,6 @@ footer{
 	color:  var(--cormenu);
     font-size: 18px;
     font-weight: bold;
-
 }
 
 .detalhesContatos{
@@ -481,10 +579,9 @@ footer{
 }
 .youtube img{
     width: 100px;
-    
 }
-/* PAGINA ADMINISTRAÇÃO */
 
+/* PAGINA ADMINISTRAÇÃO */
 .menuLateral{
     position: absolute;
     top: 110px;
@@ -495,15 +592,11 @@ footer{
     width: 245px;
     height: 76.5vh;
     transition: all 0.9s;
-    
-    /* border: 1px solid #8008; */
 }
 
-.ocultar{
+.ocultarMenuLateral{
     left: -210px !important;
-    /* transition: all 0.6; */
     transition: all 0.9s;
-
 }
 .menuItens{
     display: flex;
@@ -513,7 +606,6 @@ footer{
     background-color: #ccc;
     height: 100%;
 
-    /* border: 1px solid #00f; */
 }
 .btn_menuItem{
     cursor: pointer;
@@ -526,57 +618,239 @@ footer{
     background-color: #888;
     text-align: center;
     color: #fff;
+}
 
-    /* border: 1px solid #0f0; */
+
+.frameAdministração{
+    /* display: none; */
+    /* visibility: hidden; */
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    height: 80vh;
+    width: 100%;
+    margin-bottom: 0px;
+    transition: all 0.9s;
+
+}
+
+.ocultarFrameAdministração{
+    margin-bottom: -1100px !important;
+    transition: all 0.9s;
+}
+
+/* .alert{
+    display: flex;
+    height: 70vh;
+
+    border: 1px solid #800;
+
+
+} */
+
+.fecharFrame{
+    width: 5%;
+    height: 10vh;
+    background: #aaa;
+    border-radius: 40px 0px 0px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fecharFrame button{
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    width: 50%;
+    cursor: pointer;
+    background: #fff;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    padding: 1px;
+}
+
+.telaCadastro{
+    width: 95%;
+    height: 76vh;
+    border-radius: 0px 40px 0px 0px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.cabecalhoCadastro{
+    height: 10vh;
+    background: #aaa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 0px 40px 0px 0px;
+}
+.cabecalhoCadastro input{
+    font-size: 20px;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 10px;
+    padding: 8px;
+}
+.cabecalhoCadastro p{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.pesquisar button{
+    background: #aaa;
+    cursor: pointer;
+}
+.pesquisar img{
+    width: 40px;
+    margin-right: 10px;
+}
+
+.tbLista{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+.tbLista td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.tbLista tr:nth-child(even){background-color: #f2f2f2;}
+.tbLista tr:hover {background-color: #ddd;}
+
+.tbLista th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #04AA6D;
+  color: white;
+}
+.tdAcoes{
+    width: 15%;
+}
+.tdAcoes img{
+    width: 15%;
+    margin-left: 20px;
+    cursor: pointer;
+
+}
+
+.telaPopupCadastro{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 87.5vh;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    margin-top: -252px !important;
+    border-radius: 20px  0px 0px 0px;
+    transition: all 0.9s;
+}
+/* color: #fff; */
+/* .telaPopupCadastro{
+} */
+
+.ocultaTelaPopupCadastro{
+    visibility: hidden;
+    margin-bottom: -2100px !important;
+    transition: all 0.9s;
+}
+/* .telaProtecao{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 110vh;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: flex-start;
+    transition: all 0.9s;
+    margin-top: -650px !important;
+    border: 1px solid #800;
+} */
+
+.telaFormCadastro{
+    width: 50%;
+    height: 70hv;
+    background: var(--corbody);
+    border-radius: 20px;
+}
+.telaFormCadastro h1{
+    text-align: center;
+    margin-top: 10px;
+
+}
+.formCadastro form{
+    display: flex;
+    justify-content:flex-start;
+	flex-direction:column;
+    /* flex-direction: spa; */
+    /* width: 100%; */
+    padding: 10px;
+    margin-left: 50px ;
+    margin-right: 50px ;
+
+}
+.formCadastro span{
+    display: flex;
+    justify-content:flex-start;
+	flex-direction:column;
+    margin-bottom: 10px;
+    /* border: 1px solid #008; */
+}
+.formCadastro span label,input,select{
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 5px;
+    border-radius: 10px;
+}
+/* .formCadastro span label,input,select{
+} */
+.div_botoesCadastro{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /* INICIO CONFIRGURAÇÕES */
-
 .gridConfiguracoes{
     border: 1px solid #800;
 }
 .gridConfiguracoes table{
     width: 100%;
 }
-
 .gridConfiguracoes table th{
     width: 33%;
     border: 1px solid hsl(300, 100%, 27%);
 }
-
 .gridConfiguracoes  tr{
     margin-bottom: 2px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
-.listaConfiguracoes tr td{
-    /* margin-left: 20px;
-    padding-left: 20px; */
-} 
-
     /* Estilo zebrado */
 .linhasConfiguracoes tr:nth-child(odd) {
     background-color: #f2f2f2;
 }
-
 .linhasConfiguracoes tr:nth-child(even) {
     background-color: #ffffff;
 }
-
 .linhasConfiguracoes tr:hover {
     background-color: #ddd; /* Efeito hover */
 }
 
 .trlista{
     display: grid;
-
 }
 
 .chave, .registro{
     padding: 1em;
-
 }
+
 .acoes{
     width: 100px;
     text-align: center;
@@ -585,22 +859,57 @@ footer{
     width: 25px;
     margin-left: 10px;
     cursor: pointer;
-    
 }
 
 /* INICIO ARTIGOS */
-
 .artigo{
-    
     border: 1px solid #008;
 }
-
 .artigoImg{
-
     border: 1px solid #808;
 }
 .artigoImg img{
-
-
     border: 1px solid #800;
 }
+.menuMobile a{
+    font-weight: bold;
+}
+
+/* prev */
+@media screen and (max-width: 600px ){
+    .menuPrincipal{
+        display: none;
+    }
+    .menuMobile{
+        display: flex;
+    }   
+    .prev{
+        margin-top: 250px;
+        width: 15px;
+        font-size: 5px;
+    }
+    .next{
+        margin-top: 250px;
+        width: 15px;
+        left: 69%;
+        font-size: 5px;
+    }
+    .section_banner{
+        display: none;
+    }
+    .cronogramaIndex{
+        display: none;
+    }
+    .cabecalhoTelaLeft{
+        width: 100%;
+    }
+}
+@media screen and (min-width: 601px ){
+    .menuPrincipal{
+        display: flex;
+    }
+    .menuMobile{
+        display: none;
+    }
+}
+

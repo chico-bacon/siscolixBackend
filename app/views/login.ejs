@@ -1,0 +1,55 @@
+<html lang="pt-br">
+<body>
+    <%- include('cabecalho') %>
+
+    <main class="telaPrincipal">
+        <div class="cabecalhoTela">
+            <div class="cabecalhoTelaLeft">
+                <div class="tituloCabecalho">
+                    <h1>Faça Seu Login</h1>
+                </div>
+                <div class="iconeTela">
+                    <img src="img\icons\login.svg" alt="">
+                </div>
+            </div>
+            <div class="cabecalhoTelaRight">
+
+            </div>
+        </div>
+
+        <div class="corpoTela">
+            <div class="formularioLogin">
+                <img src="img\fotos\userIconPerson.png" alt="">
+                <!-- <div class="imgUser">
+                </div> -->
+                <!-- <p>Faça se</p> -->
+                <form action="/administracao">
+                    <span>
+                        <!-- <label for="username">Usuário</label> -->
+                        <img src="img/icons/user.svg" alt="">
+                        <input type="text" name="username" id="username">
+                    </span>
+                    <span>
+                        <!-- <label for="senha">Senha</label> -->
+                        <img src="img/icons/loginPessoal.svg" alt="">
+                        <input type="password" name="senha" id="senha">
+                    </span>
+                    <div class="alterarSenha">
+                        <a href="#">Alterar Senha</a>
+                        <a href="#">Primeiro Acesso</a>
+                    </div>
+                    
+                    <div class="botoesEntrarCancelar">
+                        <button class="botaoPadrao">Entrar</button>
+                        <button class="botaoPadrao" onclick="'/administracao'">Cancelar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+    </main>
+    <%- include('rodape') %>
+</body>
+</html>
