@@ -1,62 +1,87 @@
 import { prismaClient } from "../database/prismaClient.js";
 
 export class CronogramasController {
-    /*       
-    getRouter() {
-        const rotas = express.Router();
-        rotas.get([
-            '/',
-            '/cronogramas'
-            ], (req, res) => {
-            this.cronogramas(req, res)
-        });
-        return rotas;
-    }
-*/
-    cronogramas(request, response) {
-        response.render('cronogramas');
-    }
-
-    async inserir(request, response) {
-        const cronograma = {
-            id_bairro: request.body.id_bairro,  
-            periodicidade: request.body.periodicidade,
-            turno: request.body.turno,
-        }
+    async listar(req, res) {
         try {
-            await prismaClient.cronograma.create({
-                data: cronograma 
-            })
-            response.status(201).json({
-                message: `cronograma registrado com sucesso`
-            })
+            const cronogramas = await prismaClient.cronograma.findMany();
+            res.status(200).json(cronogramas);
+
         } catch(error) {
-            console.error(error);
-            response.status(500).json({
-                message: "Erro ao registrar cronograma.",
-                error: error instanceof Error ? error.message : String(error)
-            });
+            res.status(500).json( {message: "Erro no servidor!"} );
+            console.log(error);
         }
     }
 
-    async deletar(request, response) {
-        const id = parseInt(request.params.id);
-
+    async buscarPorId(req, res) {
         try {
-            await prismaClient.cronograma.delete({
-                where: { id: id }
+            const cronograma = await prismaClient.cronograma.findUnique({
+                where: {
+                    id: parseInt(req.params.id)
+                }
             });
-            response.status(201).json({
-                message: `Cronograma ${id} deletado com sucesso!` 
-            })
-        } catch (error) {
-            console.error(error);
-            response.status(500).json({
-                message: "Erro ao buscar cronograma.",
-                error: error instanceof Error ? error.message : String(error)
-            });
-        }
 
+        } catch(error) {
+            res.status(500).json({message: "Erro no servidor!"});
+            console.log(error);
+        }
+    }
+
+    async inserir(req, res) {
+        try {
+            const cronograma = {
+                id: req.body.id,
+                id_bairro: req.body.id_bairro,
+                periodicidade: req.body.periodicidade,
+                turnos: req.body.turnos
+            }
+    
+            await prismaClient.cronograma.create({
+                data: cronograma
+            });
+            res.status(200).json({message: 'cronograma registrado com sucesso!', data: cronograma});
+    
+        } catch(error) {
+            res.status(500).json({ message:"Erro no servidor!" });
+            console.log(error);
+    
+        }
+    }
+
+    async alterar(req, res) {
+        try {
+            const id = parseInt(req.params.id);
+
+            const cronogramaData = {
+                id: req.body.id,
+                id_bairro: req.body.id_bairro,
+                periodicidade: req.body.periodicidade,
+                turnos: req.body.turnos
+            }
+
+            const cronogramaAtualizado = await prismaClient.cronograma.update({
+                data: cronogramaData
+            });
+            res.status(200).json(cronogramaAtualizado)
+
+        } catch(error) {
+            res.status(500).json({message: 'Erro no servidor!'})
+            console.log(error)
+        }
+    }
+
+    async deletar(req, res) {
+        try {
+            const cronogramaDeletado = await prismaClient.cronograma.delete({
+                where: {
+                    id: parseInt(req.params.id)
+                }
+            });
+            res.status(200).json(cronogramaDeletado);
+
+        } catch(error) {
+            res.status(500).json({ messsage: 'Erro no servidor!'})
+            console.log(error)
+        }
     }
 
 }

@@ -14,9 +14,8 @@ datasource db {
 }
 
 model Bairro {
-  id   Int    @id @default(autoincrement())
-  nome String
-
+  id         Int          @id @default(autoincrement())
+  nome       String
   Cronograma Cronograma[]
 }
 
@@ -25,4 +24,30 @@ model Cronograma {
   bairro        Bairro @relation(fields: [id_bairro], references: [id])
   id_bairro     Int
   periodicidade Json
+  turnos        Json
 }
+
+model Artigo {
+  id             Int      @id @default(autoincrement())
+  dataPublicacao DateTime
+  manchete       String
+  conteudo       String
+}
+
+/**
+ * model Usuario {
+ * id             String @id @default(uuid())
+ * nome           String
+ * cpf            String
+ * dataNascimento String
+ * email          String
+ * telefone String
+ * nivel Nivel @relation(fields: [id_nivel], references: [id])
+ * id_nivel Int
+ * senha          String
+ * }
+ * model Nivel {
+ * id Int @id @default(autoincrement())
+ * nome String
+ * }
+ */
