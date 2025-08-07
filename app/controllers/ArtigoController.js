@@ -1,6 +1,16 @@
 import { prismaClient } from '../database/prismaClient.js';
 
 export class ArtigoController {
+    
+    async artigos(req, res) {
+        try {
+            res.status(200).render('artigos');
+        } catch(error) {
+            res.status(500).json({message: "Erro no servidor!"});
+            console.log(error);
+        }
+    }
+
     async inserir(req, res) {
         try {
             const artigo = {

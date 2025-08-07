@@ -1,5 +1,5 @@
-const express = require('express');
-class ConfiguracoesController {
+import express from 'express';
+export class ConfiguracoesController {
     getRouter() {
         const rotas = express.Router();
         rotas.get([
@@ -15,5 +15,3 @@ class ConfiguracoesController {
         response.render('configuracoes');
     }
 }
-
-module.exports = ConfiguracoesController;

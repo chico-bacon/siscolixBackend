@@ -1,5 +1,5 @@
-const express = require('express');
-class CadastroCronogramasController {
+import express from 'express';
+export class CadastroCronogramasController {
     getRouter() {
         const rotas = express.Router();
         rotas.get([
@@ -15,5 +15,3 @@ class CadastroCronogramasController {
         response.render('cadastro_cronogramas');
     }
 }
-
-module.exports = CadastroCronogramasController;

@@ -34,20 +34,20 @@ model Artigo {
   conteudo       String
 }
 
-/**
- * model Usuario {
- * id             String @id @default(uuid())
- * nome           String
- * cpf            String
- * dataNascimento String
- * email          String
- * telefone String
- * nivel Nivel @relation(fields: [id_nivel], references: [id])
- * id_nivel Int
- * senha          String
- * }
- * model Nivel {
- * id Int @id @default(autoincrement())
- * nome String
- * }
- */
+model Usuario {
+  id             String @id @default(uuid())
+  nome           String
+  cpf            String
+  dataNascimento String
+  email          String
+  telefone       String
+  nivel          Nivel  @relation(fields: [id_nivel], references: [id])
+  id_nivel       Int
+  senha          String
+}
+
+model Nivel {
+  id      Int       @id @default(autoincrement())
+  nome    String
+  Usuario Usuario[]
+}

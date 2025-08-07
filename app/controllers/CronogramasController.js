@@ -1,13 +1,23 @@
 import { prismaClient } from "../database/prismaClient.js";
 
 export class CronogramasController {
+
+    async cronogramas(req, res) {
+        try {
+            res.status(200).render('cronogramas');
+        } catch(error) {
+            res.status(500).json({message: "Erro no servidor!"});
+            console.log(error);
+        }
+    }
+
     async listar(req, res) {
         try {
             const cronogramas = await prismaClient.cronograma.findMany();
             res.status(200).json(cronogramas);
 
         } catch(error) {
-            res.status(500).json( {message: "Erro no servidor!"} );
+            res.status(500).json({message: "Erro no servidor!"});
             console.log(error);
         }
     }
