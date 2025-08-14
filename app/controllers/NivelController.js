@@ -1,20 +1,11 @@
 import { prismaClient } from "../database/prismaClient.js";
 
-export class CronogramasController {
-
-    async cronogramas(req, res) {
-        try {
-            res.status(200).render('cronogramas');
-        } catch(error) {
-            res.status(500).json({message: "Erro no servidor!"});
-            console.log(error);
-        }
-    }
+export class NivelController {
 
     async listar(req, res) {
         try {
-            const cronogramas = await prismaClient.cronograma.findMany();
-            res.status(200).json(cronogramas);
+            const niveis = await prismaClient.nivel.findMany();
+            res.status(200).json(niveis);
 
         } catch(error) {
             res.status(500).json({message: "Erro no servidor!"});
@@ -24,11 +15,12 @@ export class CronogramasController {
 
     async buscarPorId(req, res) {
         try {
-            const cronograma = await prismaClient.cronograma.findUnique({
+            const nivel = await prismaClient.nivel.findUnique({
                 where: {
                     id: parseInt(req.params.id)
                 }
             });
+            res.status(200).json(nivel)
 
         } catch(error) {
             res.status(500).json({message: "Erro no servidor!"});
@@ -38,17 +30,14 @@ export class CronogramasController {
 
     async inserir(req, res) {
         try {
-            const cronograma = {
-                id: req.body.id,
-                id_bairro: req.body.id_bairro,
-                periodicidade: req.body.periodicidade,
-                turnos: req.body.turnos
+            const nivel = {
+                nome: req.body.nome
             }
     
-            await prismaClient.cronograma.create({
-                data: cronograma
+            await prismaClient.nivel.create({
+                data: nivel
             });
-            res.status(200).json({message: 'cronograma registrado com sucesso!', data: cronograma});
+            res.status(200).json({message: 'nivel registrado com sucesso!', data: nivel});
     
         } catch(error) {
             res.status(500).json({ message:"Erro no servidor!" });
@@ -61,19 +50,17 @@ export class CronogramasController {
         try {
             const id = parseInt(req.params.id);
 
-            const cronogramaData = {
-                id_bairro: req.body.id_bairro,
-                periodicidade: req.body.periodicidade,
-                turnos: req.body.turnos
+            const nivelData = {
+                nome: req.body.nome
             }
 
-            const cronogramaAtualizado = await prismaClient.cronograma.update({
+            const nivelAtualizado = await prismaClient.nivel.update({
                 where: {
                     id: id
                 },
-                data: cronogramaData
+                data: nivelData
             });
-            res.status(200).json(cronogramaAtualizado)
+            res.status(200).json(nivelAtualizado)
 
         } catch(error) {
             res.status(500).json({message: 'Erro no servidor!'})
@@ -83,12 +70,12 @@ export class CronogramasController {
 
     async deletar(req, res) {
         try {
-            const cronogramaDeletado = await prismaClient.cronograma.delete({
+            const nivelDeletado = await prismaClient.nivel.delete({
                 where: {
                     id: parseInt(req.params.id)
                 }
             });
-            res.status(200).json(cronogramaDeletado);
+            res.status(200).json(nivelDeletado);
 
         } catch(error) {
             res.status(500).json({ messsage: 'Erro no servidor!'})

@@ -1,19 +1,34 @@
-import { prismaClient } from '../database/prismaClient.js';
-import bcrypt from 'bcrypt';
+import { prismaClient } from '../database/prismaClient.js'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
-export class UsuarioController {    
+export class UsuarioController {
+
+    cadastro(req, res) {
+        res.render('standartPageCadastro');
+    }
+
     async login(req, res) {
         try {
-            const salt = bcrypt.genSalt(10);
-            const hashSenha = bcrypt.hash(req.body.senha, salt);
-            const usuarioLogado = await prismaClient.usuario.findUnique({
+            const loginInfo = req.body;
+            const usuario = await prismaClient.usuario.findUnique({
                 where: {
-                    email: req.body.email,
-                    senha: hashSenha
-                }
+                    email: loginInfo.email
+                },
             });
 
-            res.status(200).json(usuarioLogado);
+            if (!loginInfo) {
+                res.status(404).json({ message: "Usuario não existe!"});
+            }
+
+            const passwordMatch = await bcrypt.compare(loginInfo.senha, usuario.senha);
+
+            if (!passwordMatch) {
+                res.status(404).json({ message: "Senha incorreta!"});
+            }
+            const JWT_SECRET = process.env.JWT_SECRET
+            const token = jwt.sign({ id: usuario.id, email:usuario.email, senha:usuario.senha, id_nivel: usuario.id_nivel }, JWT_SECRET, {expiresIn: '1m'})
+            res.status(200).json(token);
         } catch(error) {
             res.status(500).json({message: "Erro no servidor!"});
             console.log(error);
@@ -22,8 +37,8 @@ export class UsuarioController {
 
     async inserir(req, res) {
         try {
-            const salt = bcrypt.genSalt(10);
-            const hashSenha = bcrypt.hash(req.body.senha, salt);
+            const salt = await bcrypt.genSalt(10);
+            const hashSenha = await bcrypt.hash(req.body.senha, salt);
             
             const usuario = {
                     nome: req.body.nome,
@@ -31,7 +46,7 @@ export class UsuarioController {
                     dataNascimento: req.body.dataNascimento,
                     email: req.body.email,         
                     telefone: req.body.telefone,
-                    id_nivel: req.body.id_nivel,   
+                    id_nivel: parseInt(req.body.id_nivel),   
                     senha: hashSenha
                 }
             await prismaClient.usuario.create(
@@ -39,7 +54,9 @@ export class UsuarioController {
                     data: usuario
                 }
             )
-            res.status(200).json(usuario);
+            const JWT_SECRET = process.env.JWT_SECRET
+            const token = jwt.sign({ id: usuario.id, email:usuario.email, senha:usuario.senha, id_nivel: usuario.id_nivel }, JWT_SECRET, {expiresIn: '1m'})
+            res.status(200).json({usuario, token});
 
         } catch(error) {
             res.status(500).json({message: "Erro no servidor!"});
