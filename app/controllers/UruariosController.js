@@ -1,4 +1,5 @@
 import { prismaClient } from '../database/prismaClient.js'
+import { Nivel } from '@prisma/client'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
@@ -27,7 +28,7 @@ export class UsuarioController {
                 res.status(404).json({ message: "Senha incorreta!"});
             }
             const JWT_SECRET = process.env.JWT_SECRET
-            const token = jwt.sign({ id: usuario.id, email:usuario.email, senha:usuario.senha, id_nivel: usuario.id_nivel }, JWT_SECRET, {expiresIn: '1m'})
+            const token = jwt.sign({ id: usuario.id, email:usuario.email, senha:usuario.senha, id_nivel: usuario.id_nivel }, JWT_SECRET, {expiresIn: '10m'})
             res.status(200).json(token);
         } catch(error) {
             res.status(500).json({message: "Erro no servidor!"});
@@ -46,7 +47,7 @@ export class UsuarioController {
                     dataNascimento: req.body.dataNascimento,
                     email: req.body.email,         
                     telefone: req.body.telefone,
-                    id_nivel: parseInt(req.body.id_nivel),   
+                    nivel: Nivel.USUARIO,   
                     senha: hashSenha
                 }
             await prismaClient.usuario.create(
@@ -55,7 +56,7 @@ export class UsuarioController {
                 }
             )
             const JWT_SECRET = process.env.JWT_SECRET
-            const token = jwt.sign({ id: usuario.id, email:usuario.email, senha:usuario.senha, id_nivel: usuario.id_nivel }, JWT_SECRET, {expiresIn: '1m'})
+            const token = jwt.sign({ id: usuario.id, email:usuario.email, senha:usuario.senha, nivel: usuario.nivel }, JWT_SECRET, {expiresIn: '1m'})
             res.status(200).json({usuario, token});
 
         } catch(error) {
@@ -94,8 +95,8 @@ export class UsuarioController {
     async alterar(req, res) {
         try {
             const id = req.params.id;
-            const salt = bcrypt.genSalt(10);
-            const hashSenha = bcrypt.hash(req.body.senha, salt);
+            const salt = await bcrypt.genSalt(10);
+            const hashSenha = await bcrypt.hash(req.body.senha, salt);
             const usuarioAtualizado = await prismaClient.usuario.update(
                 {
                     where: {

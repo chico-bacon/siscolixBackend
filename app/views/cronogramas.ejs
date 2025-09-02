@@ -34,6 +34,15 @@
                         <td>{{ cronograma.turno }}</td>
                     </tr>
                 </tbody>
+                <tbody class="linhasCronograma">
+                    <% for (let cronograma of cronogramas) { %>
+                    <tr>
+                        <td><%= cronograma.id_coleta %></td>
+                        <td><%= cronograma.dia %></td>
+                        <td><%= cronograma.horario %></td>
+                    </tr>
+                    <% } %>
+                </tbody>
             </table>
         </div>
     </main>

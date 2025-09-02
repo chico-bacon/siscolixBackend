@@ -2,6 +2,8 @@ import express from 'express';
 import privateRoutes  from './routes/private.js';
 import publicRoutes  from './routes/public.js';
 import auth from './middlewares/autenticacao.js';
+import dotenv from "dotenv";
+dotenv.config();
 
 //  SETUP DO EXPRESS E OS MODULOS RESTANTES DO SERVIDOR
 const app = new express;
@@ -11,7 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 app.use('/', publicRoutes);
-app.use('/', auth, privateRoutes);
+//app.use('/', auth, privateRoutes);
+app.use('/', privateRoutes);
 
 /*
 import { IndexController } from './controllers/IndexController.js';

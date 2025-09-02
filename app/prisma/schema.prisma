@@ -13,20 +13,6 @@ datasource db {
   url      = "file:./siscolix.db"
 }
 
-model Bairro {
-  id         Int          @id @default(autoincrement())
-  nome       String
-  Coleta Coleta[]
-}
-
-model Coleta {
-  id            Int    @id @default(autoincrement())
-  bairro        Bairro @relation(fields: [id_bairro], references: [id])
-  id_bairro     Int
-  dia Semana  
-  horario DateTime
-}
-
 enum Semana {
   DOMINGO
   SEGUNDA
@@ -37,9 +23,90 @@ enum Semana {
   SABADO
 }
 
+/**
+ * enum Status {
+ * PENDENTE
+ * MOVIMENTANDO
+ * FINALIZADO
+ * }
+ */
+
+enum Status {
+  CRIADO
+  RECUSADO
+  AGUARDANDO_ROTA
+  EM_ROTA_PARA_COLETA
+  FINALIZADO
+}
+
+enum TipoChamado {
+  PODA
+  ENTULHO
+}
+
+enum Nivel {
+  USUARIO
+  ADMINISTRADOR
+}
+
+enum Situacao {
+  ATIVO
+  INATIVO
+}
+
+model Bairro {
+  id     Int      @id @default(autoincrement())
+  nome   String
+  Coleta Coleta[]
+}
+
+model Coleta {
+  id        Int      @id @default(autoincrement())
+  bairro    Bairro   @relation(fields: [id_bairro], references: [id])
+  id_bairro Int
+  Agenda    Agenda[]
+}
+
+model Agenda {
+  id        Int    @id @default(autoincrement())
+  coleta    Coleta @relation(fields: [id_coleta], references: [id])
+  id_coleta Int
+  dia       Semana
+  horario   String
+}
+
+model Chamado {
+  id               Int         @id @default(autoincrement())
+  //status           Status      @default(PENDENTE)
+  usuario_id       String
+  tipoChamado      TipoChamado @default(PODA)
+  bairro_id        Int
+  logradouro       String
+  ponto_referencia String?
+}
+
+model FluxoChamado {
+  id           Int      @id @default(autoincrement())
+  chamado_id   Int
+  admin_id     String?
+  status       Status
+  dataPrevista String?
+  dataRegistro DateTime
+}
+
+/**
+ * /model ChamadoLog {
+ * id
+ * chamdado_id
+ * dataAlteracao
+ * status           Status      @default(PENDENTE)
+ * }
+ */
+
 model Artigo {
   id             Int      @id @default(autoincrement())
-  dataPublicacao DateTime
+  situacao       Situacao @default(ATIVO)
+  dataPublicacao String
   manchete       String
   conteudo       String
 }
@@ -51,13 +118,6 @@ model Usuario {
   dataNascimento String
   email          String @unique
   telefone       String
-  nivel          Nivel  @relation(fields: [id_nivel], references: [id])
-  id_nivel       Int
+  nivel          Nivel  @default(USUARIO)
   senha          String
-}
-
-model Nivel {
-  id      Int       @id @default(autoincrement())
-  nome    String
-  Usuario Usuario[]
 }

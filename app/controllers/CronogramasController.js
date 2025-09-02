@@ -1,10 +1,14 @@
-import { prismaClient } from "../database/prismaClient.js";
+import { prismaClient } from '../database/prismaClient.js';
+import {  } from '@prisma/client'
 
 export class CronogramasController {
 
     async cronogramas(req, res) {
         try {
-            res.status(200).render('cronogramas');
+            //const coleta = await prismaClient.agenda.findMany();
+            const cronogramas = await prismaClient.agenda.findMany();
+            res.status(200).render('cronogramas',{cronogramas});
+            console.log('Entrando em cronogramas', cronogramas)
         } catch(error) {
             res.status(500).json({message: "Erro no servidor!"});
             console.log(error);
