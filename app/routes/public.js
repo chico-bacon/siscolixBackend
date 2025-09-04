@@ -4,18 +4,20 @@ const router = new Router();
 
 import { IndexController } from '../controllers/IndexController.js';
 import { ContatosController } from '../controllers/ContatosController.js';
-import { CronogramasController } from '../controllers/CronogramasController.js';
+import { CronogramaController } from '../controllers/CronogramaController.js';
 import { AdministracaoController } from '../controllers/AdministracaoController.js';
 import { ArtigoController } from "../controllers/ArtigoController.js";
 import { UsuarioController } from "../controllers/UruariosController.js";
 import { LoginController } from "../controllers/LoginController.js";
 import { BairroController } from "../controllers/BairroController.js";
+// import { AdministracaoController } from '../controllers/AdministracaoController.js';
+
 //import { ConfiguracoesController } from './controllers/ConfiguracoesController.js';
 //import { BairroController } from "../controllers/BairrosController.js";
 
 const indexController = new IndexController();
 const contatosController = new ContatosController();
-const cronogramasController = new CronogramasController();
+const cronogramaController = new CronogramaController();
 const administracaoController = new AdministracaoController();
 const artigoController = new ArtigoController();
 const usuarioController = new UsuarioController();
@@ -28,10 +30,15 @@ const bairroController = new BairroController();
 router.get(['/', '/index'], (req, res) => indexController.index(req, res));
 router.get('/contatos', (req, res) => contatosController.contatos(req, res))
 router.get('/administracao', (req, res) => administracaoController.administracao(req, res));
+// router.get('/administracaoCadastroCronogramas', (req, res) => administracaoController.administracao(req, res));
+// router.get('/administracaoCadastroArtigos', (req, res) => administracaoController.administracao(req, res));
 
-router.get('/cronogramas', (req, res) => cronogramasController.cronogramas(req, res));
-router.get('/cronogramas', (req, res) => cronogramasController.listar(req, res));
-router.get('/cronogramas/:id', (req, res) => cronogramasController.buscarPorId(req, res));
+
+// router.get('/administracaoCadastroArtigos', (req, res) => administracaoController.administracaoCadastroArtigos(req, res));
+
+router.get('/cronogramas', (req, res) => cronogramaController.cronogramas(req, res));
+router.get('/cronogramas', (req, res) => cronogramaController.listar(req, res));
+router.get('/cronogramas/:id', (req, res) => cronogramaController.buscarPorId(req, res));
 
 router.get('/bairros', (req, res) => bairroController.listar(req, res));
 router.get('/bairros/:id', (req, res) => bairroController.buscarPorId(req, res));
@@ -44,6 +51,7 @@ router.get('/cadastro', (req, res) => usuarioController.cadastro(req, res));
 router.post('/usuarios', (req, res) => usuarioController.inserir(req, res));
 router.get('/login', (req, res) => loginController.login(req, res));
 router.post('/login', (req, res) => usuarioController.login(req, res));
+
 
 //router.post('/bairros', (req, res, next) => bairroController.inserir(req, res, next));
 //router.get('/bairros', (req, res, next) => bairroController.inserir(req, res, next));*/

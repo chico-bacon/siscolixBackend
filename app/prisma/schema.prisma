@@ -54,6 +54,7 @@ model Usuario {
   nivel          Nivel  @relation(fields: [id_nivel], references: [id])
   id_nivel       Int
   senha          String
+  situacao       Int
 }
 
 model Nivel {

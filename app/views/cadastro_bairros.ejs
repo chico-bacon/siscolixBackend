@@ -1,12 +1,14 @@
+<%- include('cabecalho')%>
+
 <div class="cabecalhoCadastro">
-    <p>Cadastro de Cronogramas</p>
+    <button id="btMenu"><a href="\administracao"><img src="\img\icons\menu.svg" alt="Menu"></a></button>    <p>Cadastro de Bairros</p>
     <div class="filtrar">
         <label for="filtrar">Filtrar por:</label>
         <input type="text" name="filtrar" id="filtrar">
     </div>
     <div class="pesquisar">
-        <button><img src="img\icons\search.svg" alt="" title="Pesquisar"></button>
-        <button id="novoRegistro"><img src="img\icons\add.svg" alt="" title="Novo Registro"></button>
+        <button><img src="\img\icons\search.svg" alt="" title="Pesquisar"></button>
+        <button id="novoRegistro"><img src="\img\icons\add.svg" alt="" title="Novo Registro"></button>
     </div>
 </div>
 
@@ -85,3 +87,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    const novoRegistro = document.getElementById('novoRegistro');
+    const cancelar = document.getElementById('cancelar');
+
+    novoRegistro.addEventListener("click",(evt)=>{
+        telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
+    });
+
+    cancelar.addEventListener("click",(evt)=>{
+        telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+    });
+
+</script>

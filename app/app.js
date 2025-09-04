@@ -11,7 +11,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 app.use('/', publicRoutes);
-app.use('/', auth, privateRoutes);
+// app.use('/', auth, privateRoutes);
+app.use('/', privateRoutes);
 
 /*
 import { IndexController } from './controllers/IndexController.js';

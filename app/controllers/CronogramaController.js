@@ -1,6 +1,10 @@
 import { prismaClient } from "../database/prismaClient.js";
 
-export class CronogramasController {
+export class CronogramaController {
+    
+    cadastro(req, res) {
+        res.render('cadastro_cronogramas');
+    }
 
     async cronogramas(req, res) {
         try {
