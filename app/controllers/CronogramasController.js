@@ -5,10 +5,23 @@ export class CronogramasController {
 
     async cronogramas(req, res) {
         try {
-            //const coleta = await prismaClient.agenda.findMany();
-            const cronogramas = await prismaClient.agenda.findMany();
+            const rotas = await prismaClient.rota.findMany();
+            const cronogramas = []
+            console.log(rotas);
+            /*const bairro = await prismaClient.bairro.findUnique({
+                    where: {id: parseInt(rotas[rota].id_bairro)}
+                })
+            const cronograma = {
+                id_rota: rotas[rota].id,
+                bairro: bairro.nome,
+                agendas: agendas
+            }
+            console.log(cronograma);
+            cronogramas.push(cronograma);*/
+
+            console.log(cronogramas);
             res.status(200).render('cronogramas',{cronogramas});
-            console.log('Entrando em cronogramas', cronogramas)
+            console.log('Entrando em cronogramas', cronogramas);
         } catch(error) {
             res.status(500).json({message: "Erro no servidor!"});
             console.log(error);

@@ -58,4 +58,6 @@ router.post('/usuarios', (req, res) => usuarioController.inserir(req, res));
 router.get('/login', (req, res) => loginController.login(req, res));
 router.post('/login', (req, res) => usuarioController.login(req, res));
 
+router.get('/usuarios/teste', (req, res) => usuarioController.teste(req, res));
+
 export default router 

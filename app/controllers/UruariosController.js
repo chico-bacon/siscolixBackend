@@ -9,6 +9,26 @@ export class UsuarioController {
         res.render('standartPageCadastro');
     }
 
+    async teste(req, res) {
+        try {
+            const usuarios = await prismaClient.usuario.findMany();
+            console.log(usuarios);
+            res.status(200).render('usuarios_teste.ejs', {usuarios});
+        } catch(error) {
+            console.log('Erro no servidor!');
+            console.log(error);
+        }
+    }
+
+    async formularioTeste(req, res) {
+        try {
+            res.status(200).render('');       
+        } catch(error) {
+            console.log('Erro no servidor!');
+            console.log(error);
+        }
+    }
+
     async login(req, res) {
         try {
             const loginInfo = req.body;
@@ -109,7 +129,8 @@ export class UsuarioController {
                         email: req.body.email,         
                         telefone: req.body.telefone,
                         id_nivel: req.body.id_nivel,   
-                        senha: hashSenha
+                        senha: hashSenha,
+                        situacao: req.body.situacao
                     }
                 }
                 );

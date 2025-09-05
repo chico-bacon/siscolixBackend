@@ -13,16 +13,17 @@ datasource db {
   url      = "file:./siscolix.db"
 }
 
-enum Semana {
-  DOMINGO
-  SEGUNDA
-  TERÇA
-  QUARTA
-  QUINTA
-  SEXTA
-  SABADO
-}
-
+/**
+ * enum Semana {
+ * DOMINGO
+ * SEGUNDA
+ * TERÇA
+ * QUARTA
+ * QUINTA
+ * SEXTA
+ * SABADO
+ * }
+ */
 /**
  * enum Status {
  * PENDENTE
@@ -55,26 +56,26 @@ enum Situacao {
 }
 
 model Bairro {
-  id     Int      @id @default(autoincrement())
-  nome   String
-  Coleta Coleta[]
+  id   Int    @id @default(autoincrement())
+  nome String
+  Rota Rota[]
 }
 
-model Coleta {
-  id        Int      @id @default(autoincrement())
-  bairro    Bairro   @relation(fields: [id_bairro], references: [id])
-  id_bairro Int
-  Agenda    Agenda[]
-}
-
-model Agenda {
+model Rota {
   id        Int    @id @default(autoincrement())
-  coleta    Coleta @relation(fields: [id_coleta], references: [id])
-  id_coleta Int
-  dia       Semana
-  horario   String
+  bairro    Bairro @relation(fields: [id_bairro], references: [id])
+  id_bairro Int
+  dias      String
+  turnos    String
 }
 
+/**
+ * model Agenda {
+ * id        Int    @id @default(autoincrement())
+ * coleta    Coleta @relation(fields: [id_coleta], references: [id])
+ * id_coleta Int
+ * }
+ */
 model Chamado {
   id               Int         @id @default(autoincrement())
   //status           Status      @default(PENDENTE)
@@ -112,12 +113,13 @@ model Artigo {
 }
 
 model Usuario {
-  id             String @id @default(uuid())
+  id             String   @id @default(uuid())
   nome           String
-  cpf            String @unique
+  cpf            String   @unique
   dataNascimento String
-  email          String @unique
+  email          String   @unique
   telefone       String
-  nivel          Nivel  @default(USUARIO)
+  nivel          Nivel    @default(USUARIO)
   senha          String
+  situacao       Situacao @default(ATIVO)
 }

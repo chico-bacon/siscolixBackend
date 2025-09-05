@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vizualizando usuarios</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>nome</th>
+            <th>cpf</th> 
+            <th>data de nascimento </th>
+            <th>email</th>
+            <th>telefone</th>
+            <th>nivel</th>       
+            <th>senha</th>          
+        </tr>
+        <tbody>
+            <% for (let usuario of usuarios) { %>
+            <tr>
+                <td><%= usuario.id %></td>
+                <td><%= usuario.nome %></td>
+                <td><%= usuario.cpf %></td> 
+                <td><%= usuario.data%>}} de nascimento </td>
+                <td><%= usuario.email %></td>
+                <td><%= usuario.telefone %></td>
+                <td><%= usuario.nivel %></td>       
+                <td><%= usuario.senha %></td>          
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>
