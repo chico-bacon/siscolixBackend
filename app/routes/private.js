@@ -40,7 +40,23 @@ router.get('/administracao/artigos/:id', (req, res) => artigoController.buscarPo
 router.put('/administracao/artigos/:id', (req, res) => artigoController.alterar(req, res));
 router.delete('/administracao/artigos/:id', (req, res) => artigoController.deletar(req, res));
 
-//ROTAS PRIVADAS DE GERENCIAMENTO DE USUARIOS
+router.get('/administracao/bairros/cadastro', (req, res) => bairroController.cadastro(req, res));
+router.post('/administracao/bairros', (req, res) => bairroController.inserir(req, res));
+router.put('/administracao/bairros/:id', (req, res) => bairroController.alterar(req, res));
+router.delete('/administracao/bairros/:id', (req, res) => bairroController.deletar(req, res));
+
+router.get('/administracao/cronogramas/cadastro', (req, res) => cronogramaController.cadastro(req, res));
+router.post('/administracao/cronogramas', (req, res) => cronogramaController.inserir(req, res));
+router.put('/administracao/cronogramas/:id', (req, res) => cronogramaController.alterar(req, res));
+router.delete('/administracao/cronogramas/:id', (req, res) => cronogramaController.deletar(req, res));
+
+router.get('/administracao/niveis/Cadastro', (req, res) => nivelController.cadastro(req, res));
+router.get('/administracao/niveis', (req, res) => nivelController.listar(req, res))
+router.post('/administracao/niveis', (req, res) => nivelController.inserir(req, res));
+router.get('/administracao/niveis/:id', (req, res) => nivelController.buscarPorId(req, res))
+router.put('/administracao/niveis/:id', (req, res) => nivelController.alterar(req, res));
+router.delete('/administracao/niveis/:id', (req, res) => nivelController.deletar(req, res));
+
 router.get('/administracao/usuarios/cadastro', (req, res) => usuarioController.cadastro(req, res));
 router.get('/administracao/usuarios', (req, res) => usuarioController.listar(req, res));
 router.get('/administracao/usuarios/:id', (req, res) => usuarioController.buscarPorId(req, res))

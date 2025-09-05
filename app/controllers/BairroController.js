@@ -1,6 +1,11 @@
 import { prismaClient } from "../database/prismaClient.js";
 
 export class BairroController {
+
+    cadastro(req, res) {
+        res.render('cadastro_bairros');
+    }
+
     async listar(req, res) {
         try {
             const bairros = await prismaClient.bairro.findMany();

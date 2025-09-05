@@ -29,50 +29,34 @@
         </div>
 
         <div class="">
-            ITENS DE CONFIGURAÇÃO
+            <p>ITENS DE CONFIGURAÇÃO</p>
+            
             <div class="gridConfiguracoes">
-                <table >
+                <table>
                     <tr>
                         <th>Chave</th>
                         <th>Registro</th>
                         <th>Ações</th>
                     </tr>
+                    
                     <tbody  class="linhasConfiguracoes">   
-                        <tr v-for="configuracao in listaConfiguracoes" :key="configuracao.id" > <!-- class="trlista" -->
+                        <tr v-for="configuracao in listaConfiguracoes" :key="configuracao.id" > class="trlista" 
                             <td class="chave">{{ configuracao.chave }}</td>
                             <td class="registro">{{ configuracao.registro }}</td>
                             <td class="acoes">
-                                <!-- <button   @click="visualizar"></button> -->
-                                <img src="/img/icons/visualizar.svg" alt="Visualizar"  @click="visualizar">
+                                <button   @click="visualizar"></button> 
+                                 <img src="/img/icons/visualizar.svg" alt="Visualizar"  @click="visualizar">
                                 <img src="/img/icons/editar.svg" alt="Editar"  @click="editar">
                                 <img src="/img/icons/deletar.svg" alt="Excluir"  @click="excluir">
                             </td>
-
                         </tr>
-                    </tbody>
+                    </tbody> 
+ 
                 </table>
             </div>
         </div>
     </main>
 
-    <script type="module">
-    import { createApp, ref, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
-
-    createApp({
-        setup() {
-            let id=1;
-            let listaConfiguracoes = reactive([
-                {id: 1, chave: "Link_Site_Prefeitura", registro: "https://paracuru.ce.gov.br/"},
-                {id: 2, chave: "Link_Ouvidoria_Prefeitura", registro: "https://paracuru.ce.gov.br/ouvidoria"},
-                {id: 3, chave: "Link_Site_Secretaria_Gestao", registro: "https://paracuru.ce.gov.br/secretaria.php?sec=46"}
-            ]);
-            console.log(listaConfiguracoes);
-            return {
-                listaConfiguracoes
-            }
-        }
-    }).mount('main')
-    </script>
 
     <%- include('rodape') %>
 </body>

@@ -1,3 +1,4 @@
+<script src="https://unpkg.com/vue@3"></script>    
 <html lang="pt-br">
 <body class="bodyCadastro">
     <%- include('cabecalho') %>
@@ -22,11 +23,11 @@
             <div id="menuPrincipal" class="menuLateral ocultarMenuLateral"> <!-- ocultar -->
                 <div id="menuItens" class="menuItens">
                     <h3>Cadastros</h3>
-                    <button id="artigos" class="btn_menuItem">Artigos</button>
-                    <button id="bairros" class="btn_menuItem">Bairros</button>
+                    <button id="artigos" class="btn_menuItem"><a href="/administracao/artigos/cadastro">Artigos</a></button>
+                    <button id="bairros" class="btn_menuItem"><a href="/administracao/bairros/cadastro">Bairros</a></button>
                     <button id="perfis" class="btn_menuItem">Perfis</button>
-                    <button id="cronogramas" class="btn_menuItem">Cronogramas</button>
-                    <button id="usuarios" class="btn_menuItem">Usuários</button>
+                    <button id="cronogramas" class="btn_menuItem"><a href="/administracao/cronogramas/cadastro">Cronogramas</a></button>
+                    <button id="usuarios" class="btn_menuItem"><a href="/administracao/usuarios/cadastro">Usuários</a></button>
                     <button id="veiculos'" class="btn_menuItem">Veiculos</button>
                     <h3>Eventos</h3>
                     <button id="chamados" class="btn_menuItem">Chamados</button>
@@ -39,140 +40,103 @@
                     <img src="img\icons\menu.svg" alt="">
                 </div>
             </div>
-            <!-- <div class="alert">
-                <p>lat</p>
-                <p>direit</p>
-            </div> -->
+
             
-            <div id="frameAdministração" class="frameAdministração ocultarFrameAdministração"> <!-- ocultarFrameAdministração -->
-                <!-- <div></div> -->
+            <div id="frameAdministracao" class="frameAdministracao ocultarframeAdministracao"> <!-- ocultarframeAdministracao -->
                 <div class="fecharFrame">
                     <button id="btFecharFrame" class="btFecharFrame">X</button>
                 </div>
                 <div class="telaCadastro">
-                    <%- include('cadastro_artigos') %>
-                    <!-- <%- include('cadastro_artigos') %> -->
                 </div>
             </div>
         </div>
     </main>
     <%- include('rodape') %>
 
-
-
-    
 <script>
+    const { createApp } = Vue
 
     const btn_menuPrincipal = document.getElementById('btn_menuPrincipal');
     const menuPrincipal = document.getElementById('menuPrincipal');
     const menuItens = document.getElementById('menuItens');
-    const frameAdministração = document.getElementById('frameAdministração');
+    const frameAdministracao = document.getElementById('frameAdministracao');
     const btFecharFrame = document.getElementById('btFecharFrame');
-    const novoRegistro = document.getElementById('novoRegistro');
+    // const novoRegistro = document.getElementById('novoRegistro');
     const telaPopupCadastro = document.getElementById('telaPopupCadastro');
     const cancelar = document.getElementById('cancelar');
-    // const telaProtecao = document.getElementById('telaProtecao');
     const artigos = document.getElementById('artigos');
     const bairros = document.getElementById('bairros');
     const perfis = document.getElementById('perfis');
     const cronogramas = document.getElementById('cronogramas');
     const usuarios = document.getElementById('usuarios');
-    // const veiculos = document.getElementById('veiculos');
     const chamados = document.getElementById('chamados');
     const configuracoes = document.getElementById('configuracoes');
     const consultas = document.getElementById('consultas');
     const telaCadastro = document.getElementById('telaCadastro');
 
     let nomeDaPagina = '';
-    // const urlComParametro = `${nomeDaPagina}`;
-    // meuIframe.src = urlComParametro;
-
-    // function meuIframe(nomePagina){
-
-
-
-    // }
-
-
-// const nomeDaPagina = 'detalhesProduto.html'; // Ou um endpoint do seu servidor
-
-// Constrói a URL com o parâmetro na query string
-// Ex: detalhesProduto.html?id=12345
-
-// const urlComParametro = `${nomeDaPagina}?id=${idDoProduto}`;
-
-// Define o atributo 'src' do iframe com a URL construída
-// meuIframe.src = urlComParametro;
-
-
-
 
     btn_menuPrincipal.addEventListener("click",(evt)=>{
         menuPrincipal.classList.toggle("ocultarMenuLateral");
+        nomeDaPagina.value = 'Nome da Pagina';
     });
     
     menuItens.addEventListener("click",(evt)=>{
-        frameAdministração.classList.toggle("ocultarFrameAdministração");
+        frameAdministracao.classList.toggle("ocultarframeAdministracao");
         menuPrincipal.classList.toggle("ocultarMenuLateral");
     });
 
     btFecharFrame.addEventListener("click",(evt)=>{
-        frameAdministração.classList.toggle("ocultarFrameAdministração");
+        frameAdministracao.classList.toggle("ocultarframeAdministracao");
     });
     
-    novoRegistro.addEventListener("click",(evt)=>{
-        telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
-    });
+    // const novoRegistro = document.getElementById('novoRegistro');
+    // novoRegistro.addEventListener("click",(evt)=>{
+    //     telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
+    // });
  
-    cancelar.addEventListener("click",(evt)=>{
-        telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
-    });
+    // cancelar.addEventListener("click",(evt)=>{
+    //     telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+    // });
 
     artigos.addEventListener("click",(evt)=>{
-        nomeDaPagina = 'artigos';
-
-        
-        // include.add('artigos')
-        // telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+        nomeDaPagina = 'Pagina de Artigos...';
+        console.log(nomeDaPagina);
     });
     
     bairros.addEventListener("click",(evt)=>{
-        // telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+        nomeDaPagina = 'Pagina de Bairros...';
+        console.log(nomeDaPagina);
     });
     
     perfis.addEventListener("click",(evt)=>{
-        // telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+        nomeDaPagina = 'Pagina de Perfis...';
+        console.log(nomeDaPagina);
     });
     
     cronogramas.addEventListener("click",(evt)=>{
-        nomeDaPagina = 'cadastro_cronogramas';
-        const urlComParametro = `${nomeDaPagina}`;
-        telaCadastro.src = urlComParametro;
-
-
-        // telaCadastro.add('cadastro_cronogramas');
-        // add('cadastro_cronogramas');
-        // telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+        nomeDaPagina = 'Pagina de Cronogramas...';
+        console.log(nomeDaPagina);
     });
 
     usuarios.addEventListener("click",(evt)=>{
-        // telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+        nomeDaPagina = 'Pagina de Usuários...';
+        console.log(nomeDaPagina);
     });
 
-    // veiculos.addEventListener("click",(evt)=>{
-    //     // telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+    // chamados.addEventListener("click",(evt)=>{
+    //     nomeDaPagina = 'Pagina de Chamados...';
+    //     console.log(nomeDaPagina);
     // });
 
-    chamados.addEventListener("click",(evt)=>{
-        // telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
-    });
-
     configuracoes.addEventListener("click",(evt)=>{
-        // telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+        nomeDaPagina = 'Pagina de Configurações...';
+        console.log(nomeDaPagina);
     });
 
     consultas.addEventListener("click",(evt)=>{
-        // telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+        nomeDaPagina = 'Pagina de Consultas...';
+        console.log(nomeDaPagina);
     });
 
 

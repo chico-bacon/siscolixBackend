@@ -1,12 +1,15 @@
+<%- include('cabecalho') %>
+
 <div class="cabecalhoCadastro">
+    <button id="btMenu"><a href="\administracao"><img src="\img\icons\menu.svg" alt="Menu"></a></button>
     <p>Cadastro de Cronogramas</p>
     <div class="filtrar">
         <label for="filtrar">Filtrar por:</label>
         <input type="text" name="filtrar" id="filtrar">
     </div>
     <div class="pesquisar">
-        <button><img src="img\icons\search.svg" alt="" title="Pesquisar"></button>
-        <button id="novoRegistro"><img src="img\icons\add.svg" alt="" title="Novo Registro"></button>
+        <button><img src="\img\icons\search.svg" alt="" title="Pesquisar"></button>
+        <button id="novoRegistro"><img src="\img\icons\add.svg" alt="" title="Novo Registro"></button>
     </div>
 </div>
 
@@ -20,6 +23,7 @@
             <th class="thSituacao">Turno</th>
             <th class="thSituacao">Situação</th>
             <th class="thAcoes">Ações</th>
+            <!-- <th> testesase</th> -->
             <!-- <th></th>
             <th></th> -->
         </tr>
@@ -41,8 +45,6 @@
     </table>
 </div>
 
-
-
 <!-- ocultaTelaPopupCadastro -->
 <div id="telaPopupCadastro" class="telaPopupCadastro ocultaTelaPopupCadastro"> 
     <div class="telaFormCadastro">
@@ -62,14 +64,50 @@
                         <option value="3">Torre</option>
                     </select>
                 </span>
-                <span>
-                    <label for="periodicidade">Periodicidade</label>
-                    <input type="text" id="periodicidade">
-                </span>
-                <span>
-                    <label for="turno">Turno</label>
-                    <input type="text" id="turno">
-                </span>
+                <label for="">Periodicidade</label>
+                <div class="periodicidade">
+                    <span>
+                        <label for="segunda">Segunda</label>
+                        <input type="checkbox" id="segunda" name="segunda">
+                    </span>
+                    <span>
+                        <label for="terca">Terça</label>
+                        <input type="checkbox" id="terca" name="terca">
+                    </span>
+                    <span>
+                        <label for="quarta">Quarta</label>
+                        <input type="checkbox" id="quarta" name="quarta">
+                    </span>
+                    <span>
+                        <label for="quinta">Quinta</label>
+                        <input type="checkbox" id="quinta" name="quinta">
+                    </span>
+                    <span>
+                        <label for="sexta">Sexta</label>
+                        <input type="checkbox" id="sexta" name="sexta">
+                    </span>
+                    <span>
+                        <label for="sabado">Sábado</label>
+                        <input type="checkbox" id="sabado" name="sabado">
+                    </span>
+                </div>
+
+                <label for="">Turno</label>
+                <div class="turno">
+                    <span>
+                        <label for="manha">Manhã</label>
+                        <input type="checkbox" id="manha" name="manha">
+                    </span>
+                    <span>
+                        <label for="tarde">Tarde</label>
+                        <input type="checkbox" id="tarde" name="tarde">
+                    </span>
+                    <span>
+                        <label for="noite">Noite</label>
+                        <input type="checkbox" id="noite" name="noite">
+                    </span>
+                </div>
+                
                 <span>
                     <label for="situacao">Situação</label>
                     <select name="situacao">
@@ -85,3 +123,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    const novoRegistro = document.getElementById('novoRegistro');
+    const cancelar = document.getElementById('cancelar');
+
+    novoRegistro.addEventListener("click",(evt)=>{
+        telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
+    });
+
+    cancelar.addEventListener("click",(evt)=>{
+        telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+    });
+
+</script>

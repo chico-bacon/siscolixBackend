@@ -2,6 +2,11 @@ import { prismaClient } from "../database/prismaClient.js";
 
 export class NivelController {
 
+    cadastro(req, res) {
+            const nomePagina = 'cadastro_niveis';
+        res.render('administracao', {nomePagina});
+    }
+
     async listar(req, res) {
         try {
             const niveis = await prismaClient.nivel.findMany();

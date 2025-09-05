@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 export class UsuarioController {
 
     cadastro(req, res) {
-        res.render('standartPageCadastro');
+        res.render('cadastro_usuarios');
     }
 
     async teste(req, res) {

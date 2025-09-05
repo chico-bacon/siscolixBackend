@@ -1,14 +1,9 @@
 import { prismaClient } from '../database/prismaClient.js';
 
 export class ArtigoController {
-    
-    async artigosPrivado(req, res) {
-        try {
-            res.status(200).render('cadastro_artigos');
-        } catch(error) {
-            res.status(500).json({message: "Erro no servidor!"});
-            console.log(error);
-        }
+
+    cadastro(req, res) {
+        res.render('cadastro_artigos');
     }
 
     async artigosPublico(req, res) {
