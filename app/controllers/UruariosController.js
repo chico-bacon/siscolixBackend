@@ -5,7 +5,8 @@ import jwt from 'jsonwebtoken'
 
 export class UsuarioController {
 
-    cadastro(req, res) {
+    async cadastro(req, res) {
+        //const usuarios = await this.listar();
         res.render('cadastro_usuarios');
     }
 

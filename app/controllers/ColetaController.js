@@ -2,6 +2,11 @@ import { prismaClient } from "../database/prismaClient.js";
 
 export class ColetaController {
 
+    async cadastro(req, res) {
+        const ListaCronogramas = await prismaClient.rota.findMany();
+        res.render('cadastro_cronogramas', {ListaCronogramas});
+    }
+
     async listar(req, res) {
         try {
             const rotas = await prismaClient.rota.findMany({include: {bairro: true}})

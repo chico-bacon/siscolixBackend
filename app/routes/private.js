@@ -24,6 +24,7 @@ router.put('/administracao/bairros/:id', (req, res) => bairroController.alterar(
 router.delete('/administracao/bairros/:id', (req, res) => bairroController.deletar(req, res));
 
 //ROTAS PRIVADAS DE GERENCIAMENTO DE COLETAS
+router.get('/administracao/coleta/cadastro', (req, res) => coletaController.cadastro(req, res));
 router.post('/administracao/coletas', (req, res) => coletaController.inserir(req, res));
 router.put('/administracao/coletas/:id', (req, res) => scoletaController.alterar(req, res));
 router.delete('/administracao/coletas/:id', (req, res) => coletaController.deletar(req, res));
@@ -34,7 +35,8 @@ router.put('/administracao/agendas/:id', (req, res) => agendaController.alterar(
 router.delete('/administracao/agendas/:id', (req, res) => agendaController.deletar(req, res));
 
 //ROTAS PRIVADAS DE GERENCIAMENTO DE ARTIGOS
-router.get('/administracao/artigos', (req, res) => artigoController.artigosPrivado(req, res));
+router.get('/administracao/artigos/cadastro', (req, res) => artigoController.artigosPrivado(req, res));
+router.get('/administracao/artigos', (req, res) => artigoController.listar(req, res));
 router.post('/administracao/artigos', (req, res) => artigoController.inserir(req, res));
 router.get('/administracao/artigos/:id', (req, res) => artigoController.buscarPorId(req, res));
 router.put('/administracao/artigos/:id', (req, res) => artigoController.alterar(req, res));
@@ -57,6 +59,7 @@ router.get('/administracao/niveis/:id', (req, res) => nivelController.buscarPorI
 router.put('/administracao/niveis/:id', (req, res) => nivelController.alterar(req, res));
 router.delete('/administracao/niveis/:id', (req, res) => nivelController.deletar(req, res));
 
+//USUARIOS
 router.get('/administracao/usuarios/cadastro', (req, res) => usuarioController.cadastro(req, res));
 router.get('/administracao/usuarios', (req, res) => usuarioController.listar(req, res));
 router.get('/administracao/usuarios/:id', (req, res) => usuarioController.buscarPorId(req, res))

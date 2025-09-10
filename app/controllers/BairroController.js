@@ -2,7 +2,7 @@ import { prismaClient } from "../database/prismaClient.js";
 
 export class BairroController {
 
-    cadastro(req, res) {
+    async cadastro(req, res) {
         res.render('cadastro_bairros');
     }
 

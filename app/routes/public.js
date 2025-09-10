@@ -14,7 +14,6 @@ import { LoginController } from "../controllers/LoginController.js";
 import { BairroController } from "../controllers/BairroController.js";
 import { ChamadoController } from "../controllers/ChamadoController.js";
 import { FluxoChamadoController } from "../controllers/FluxoChamadoController.js";
-import { CronogramasController } from "../controllers/CronogramasController.js";
 
 const indexController = new IndexController();
 const contatosController = new ContatosController();
@@ -35,8 +34,6 @@ const loginController = new LoginController();
 const bairroController = new BairroController();
 const chamadoController = new ChamadoController() ;
 const fluxoChamadoController = new FluxoChamadoController();
-const cronogramasController = new CronogramasController();
-
 
 router.get(['/', '/index'], (req, res) => indexController.index(req, res));
 router.get('/contatos', (req, res) => contatosController.contatos(req, res))

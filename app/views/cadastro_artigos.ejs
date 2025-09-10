@@ -24,18 +24,18 @@
             <th class="thmanchete">Manchete</th>
             <th class="thAcoes">Ações</th>
         </tr>
-        <tbody  class="linhasCronograma">   
-            <!-- <tr v-for="artigos in listaArtigos" :key="artigos.id">
-                <td class="tdId">{{ artigos.id }}</td>
-                <td class="tdSituacao">{{ artigos.situacao }}</td>
-                <td class="tddataPublicacao">{{ cronograma.dataPublicacao }}</td>
-                <td class="tdmanchete">{{ cronograma.manchete }}</td>
+        <tbody  class="linhasArtigo">   
+            <tr v-for="artigo in listaArtigos" :key="artigo.id">
+                <td class="tdId">{{ artigo.id }}</td>
+                <td class="tdSituacao">{{ artigo.situacao }}</td>
+                <td class="tddataPublicacao">{{ artigo.dataPublicacao }}</td>
+                <td class="tdmanchete">{{ artigo.manchete }}</td>
                 <td class="tdAcoes">
                     <img src="/img/icons/visualizar.svg" @click="visualizar">
                     <img src="/img/icons/editar.svg" @click="editar">
                     <img src="/img/icons/deletar.svg"  @click="excluir">
                 </td>
-            </tr> -->
+            </tr>
         </tbody>
     </table>
 </div>
