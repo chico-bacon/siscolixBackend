@@ -38,7 +38,7 @@
             </tbody>
         </table>
     </div>
-
+    <!-- ocultaTelaPopupCadastro -->
     <div id="telaPopupCadastro" class="telaPopupCadastro ocultaTelaPopupCadastro">
         <div class="telaFormCadastro">
             <div class="tituloFormulario">
@@ -65,7 +65,8 @@
                     </span>
                     <span>
                         <label for="conteudo">Conteudo da Matéria</label>
-                        <input type="text" id="conteudo">
+                        <!-- <input type="text" id="conteudo"> -->
+                        <textarea id="conteudo" name="conteudo" rows="4" cols="50"></textarea>                        
                     </span>
                     <div class="div_botoesCadastro">
                         <button id="gravar" class="botaoPadrao">Gravar</button>
@@ -77,14 +78,13 @@
     </div>
 </main>
 
-<script>
+<script type="module">
     const novoRegistro = document.getElementById('novoRegistro');
 
     novoRegistro.addEventListener("click", (evt) => {
         telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
     });
 
-    import { createApp, ref, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
     import { createApp, ref, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
 
     createApp({
