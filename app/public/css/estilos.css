@@ -738,14 +738,17 @@ footer{
     margin-left: 10px;
     cursor: pointer;
 }
+.tbLista td{
+    text-transform: uppercase;
+}
 
 .telaPopupCadastro{
-    position: relative;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     /* height: 87.5vh; */
+    position: absolute;
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
     width: 100%;
@@ -945,8 +948,9 @@ footer{
 
     /* border: 1px solid #800; */
 }
-.subDivCadastro input, .subDivCadastro select, .subDivCadastro label{
+.subDivCadastro input, .subDivCadastro select, .subDivCadastro label, .subDivCadastro textarea{
     width: 100%;
+    text-transform: uppercase;
 }
 .btFecharFormulario{
     width: 2rem;

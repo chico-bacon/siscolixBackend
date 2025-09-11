@@ -12,77 +12,213 @@
     </div>
 </div>
 
-<div class="listaDados">
-    <table class="tbLista">
-        <tr class="cabecalhoLista">
-            <th class="thId">id</th>
-            <th class="thDescricao">Bairro</th>
-            <th class="thSituacao">Situação</th>
-            <th class="thAcoes">Ações</th>
-            <!-- <th></th>
-            <th></th> -->
-        </tr>
-        <tbody  class="linhasCronograma">   
-            <tr v-for="cronograma in listaCronogramas" :key="cronograma.id">
-                <td class="tdId">{{ cronograma.id }}</td>
-                <td class="tdDescricao">{{ cronograma.descricao }}</td>
-                <td class="tdDescricao">{{ cronograma.bairro }}</td>
-                <td class="tdSituacao">{{ cronograma.situacao }}</td>
-                <td class="tdAcoes">
-                    <img src="/img/icons/visualizar.svg" @click="visualizar">
-                    <img src="/img/icons/editar.svg" @click="editar">
-                    <img src="/img/icons/deletar.svg"  @click="excluir">
-                </td>
+<main>
+    <div class="listaDados">
+        <table class="tbLista">
+            <tr class="cabecalhoLista">
+                <th class="thId">id</th>
+                <th class="thDescricao">Nome Bairro</th>
+                <th class="thSituacao">Situação</th>
+                <th class="thAcoes">Ações</th>
+                <!-- <th></th>
+                <th></th> -->
             </tr>
-        </tbody>
-    </table>
-</div>
+            <tbody  class="linhasCronograma">   
+                <tr v-for="bairro in listaBairros" :key="bairro.id">
+                    <td class="tdId">{{ bairro.id }}</td>
+                    <td class="tdDescricao">{{ bairro.nome }}</td>
+                    <td class="tdSituacao">{{ bairro.situacao }}</td>
+                    <td class="tdAcoes">
+                        <img src="/img/icons/visualizar.svg" @click="visualizar(bairro.id)">
+                        <img src="/img/icons/editar.svg" @click="editar(bairro.id)">
+                        <img src="/img/icons/deletar.svg"  @click="excluir(bairro.id)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="telaPopupCadastro" class="telaPopupCadastro ocultaTelaPopupCadastro"> 
+        <div class="telaFormCadastro">
+            <div class="tituloFormulario">
+                <h1>Novo Cadastro de Bairros</h1>
+                <button class="btFecharFormulario" @click="fecharTelaCadastro">X</button>
+            </div>
 
+            <div class="formCadastro">
+                <form @submit.prevent="processaForm()">
+                    <input type="text" value="0" id="id">
+                    <div class="subDivCadastro">
+                        <label>
+                            <span>Nome do Bairro</span>
+                            <input type="text" id="nome">
+                        </label>
+                    </div>
+                    <div class="subDivCadastro">
+                        <label>
+                            <span>Situação</span>
+                                <select id="situacao">
+                                    <option value="INATIVO">Inatívo</option>
+                                    <option value="ATIVO">Ativo</option>
+                                </select>
+                        </label>
+                    </div>
 
-
-<!-- ocultaTelaPopupCadastro -->
-<div id="telaPopupCadastro" class="telaPopupCadastro ocultaTelaPopupCadastro"> 
-    <div class="telaFormCadastro">
-        <h1>Novo Cadastro de Cronograma</h1>
-        <div class="formCadastro">
-            <form action="">
-                <span>
-                    <label for="descricao">Descrição</label>
-                    <input type="text" id="descricao">
-                </span>
-                <span>
-                    <label for="bairro">Bairro</label>
-                    <select name="bairro">
-                        <!-- <option value=""></option> -->
-                        <option value="1">Centro</option>
-                        <option value="2">Carlotas</option>
-                        <option value="3">Torre</option>
-                    </select>
-                </span>
-                <span>
-                    <label for="periodicidade">Periodicidade</label>
-                    <input type="text" id="periodicidade">
-                </span>
-                <span>
-                    <label for="turno">Turno</label>
-                    <input type="text" id="turno">
-                </span>
-                <span>
-                    <label for="situacao">Situação</label>
-                    <select name="situacao">
-                        <option value="0">Inatívo</option>
-                        <option value="1">Ativo</option>
-                    </select>
-                </span>
-            </form>
-            <div class="div_botoesCadastro">
-                <button id="gravar" class="botaoPadrao">Gravar</button>
-                <button id="cancelar" class="botaoPadrao">Cancelar</button>
+                    <div class="div_botoesCadastro">
+                        <button id="gravar" class="botaoPadrao">Gravar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
+</main>
 
+
+<script type="module">
+    const novoRegistro = document.getElementById('novoRegistro');
+
+    novoRegistro.addEventListener("click",(evt)=>{
+        telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
+    });
+
+    import { createApp, ref, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+    createApp({
+        setup() {
+            let listaBairros = ref([]);
+            async function processaForm(){
+                let bairro={
+                    id: id.value,
+                    nome: nome.value,
+                    situacao: situacao.value
+                }
+                console.log(bairro);
+                if (id.value == "0") {
+                    await fetch('/administracao/bairros', {
+                        method: 'POST', // Specify the HTTP method as POST
+                        headers: {
+                            'Content-Type': 'application/json' // Indicate that the body is JSON
+                        },
+                        body: JSON.stringify(bairro) // Convert the JavaScript object to a JSON string
+                    });
+                    
+                } else {
+                    await fetch(`/administracao/bairros/${id.value}`, {
+                        method: 'PUT', // Specify the HTTP method as POST
+                        headers: {
+                            'Content-Type': 'application/json' // Indicate that the body is JSON
+                        },
+                        body: JSON.stringify(bairro) // Convert the JavaScript object to a JSON string
+                    })
+                }
+                limpaForm();
+                atualizarLista();
+                fecharTelaCadastro()
+            }
+
+            function limpaForm(){
+                nome.value = '';
+                situacao.value = '';
+            }
+
+            function chamarTelaCadastro(){
+                telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
+            }
+
+            function fecharTelaCadastro(){
+                telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+                gravar.classList.remove('ocultaBotaoGravar');
+            }
+
+            function atualizarLista(){
+                fetch('/bairros')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        listaBairros.value = data;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+
+            function visualizar(idBairro) {
+                // mostra registro individual
+                const url = `/administracao/bairros/${idBairro}` 
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        id.value = idBairro;
+                        nome.value = data.nome;
+                        situacao.value = data.situacao;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+                gravar.classList.add('ocultaBotaoGravar');
+                chamarTelaCadastro();
+            }
+
+            function editar(idBairro){
+                const url = `/bairros/${idBairro}`;
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        id.value = idBairro;
+                        nome.value = data.nome;
+                        situacao.value = data.situacao;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+                chamarTelaCadastro();
+            }
+
+            async function excluir(idBairro){
+                console.log('Id do bairro:' + idBairro);
+                if(confirm('Deseja Realmenete Excluir o Registro?')){
+                    // /administracao/bairros/:id
+                    await fetch(`/administracao/bairros/${idBairro}`, {
+                        method: 'DELETE', 
+                        headers: {
+                            'Content-Type': 'application/json' 
+                        }
+                    })
+                    atualizarLista();
+                }
+            }
+
+            atualizarLista()
+            return {
+                processaForm,
+                listaBairros,
+                visualizar,
+                editar,
+                excluir,
+                limpaForm,
+                fecharTelaCadastro,
+                chamarTelaCadastro
+            }
+        }
+    }).mount('main')
+</script>
+
+
+
+<!-- 
 <script>
     const novoRegistro = document.getElementById('novoRegistro');
     const cancelar = document.getElementById('cancelar');
@@ -95,4 +231,4 @@
         telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
     });
 
-</script>
+</script> -->

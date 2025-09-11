@@ -48,29 +48,35 @@
             <div class="formCadastro">
                 <form @submit.prevent="processaForm()">
                     <input type="hidden" value="0" id="id">
-                    <span>
-                        <label for="manchete">Manchete</label>
-                        <input type="text" id="manchete">
-                    </span>
-                    <span>
-                        <label for="situacao">Situacao</label>
-                        <select name="situacao">
-                            <option value="1">Ativo</option>
-                            <option value="0">Inativo</option>
-                        </select>
-                    </span>
-                    <span>
-                        <label for="dataPublicacao">Data da Publicação</label>
-                        <input type="text" id="dataPublicacao">
-                    </span>
-                    <span>
-                        <label for="conteudo">Conteudo da Matéria</label>
-                        <!-- <input type="text" id="conteudo"> -->
-                        <textarea id="conteudo" name="conteudo" rows="4" cols="50"></textarea>                        
-                    </span>
+                    <div class="subDivCadastro">
+                        <label for="manchete">
+                            <span>Manchete</span>
+                            <input type="text" id="manchete">
+                        </label>
+                    </div>
+                    <div class="subDivCadastro">
+                        <label for="situacao">
+                            <span>Situacao</span>
+                            <select id="situacao" name="situacao">
+                                <option value="INATIVO">Inatívo</option>
+                                <option value="ATIVO">Ativo</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="subDivCadastro">
+                        <label for="dataPublicacao">
+                            <span>Data da Publicação</span>
+                            <input type="text" id="dataPublicacao">
+                        </label>
+                    </div>
+                    <div class="subDivCadastro">
+                        <label for="conteudo">
+                        <span>Conteudo da Matéria</span>
+                            <textarea id="conteudo" name="conteudo" rows="4" cols="50"></textarea>                        
+                        </label>
+                    </div>
                     <div class="div_botoesCadastro">
                         <button id="gravar" class="botaoPadrao">Gravar</button>
-                        <!-- <button id="cancelar" class="botaoPadrao">Cancelar</button> -->
                     </div>
                 </form>
             </div>
@@ -78,6 +84,168 @@
     </div>
 </main>
 
+
+<script type="module">
+    const novoRegistro = document.getElementById('novoRegistro');
+
+    novoRegistro.addEventListener("click",(evt)=>{
+        telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
+    });
+
+    import { createApp, ref, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+    createApp({
+        setup() {
+            let listaArtigos = ref([]);
+            async function processaForm(){
+                let artigo={
+                    id: id.value,
+                    manchete: manchete.value,
+                    dataPublicacao: dataPublicacao.value,
+                    situacao: situacao.value,
+                    conteudo: conteudo.value
+                }
+                if (id.value == "0") {
+                    await fetch('/administracao/artigos', {
+                        method: 'POST', // Specify the HTTP method as POST
+                        headers: {
+                            'Content-Type': 'application/json' // Indicate that the body is JSON
+                        },
+                        body: JSON.stringify(artigo) // Convert the JavaScript object to a JSON string
+                    });
+
+                } else {
+                    await fetch(`/administracao/artigos/${id.value}`, {
+                        method: 'PUT', // Specify the HTTP method as POST
+                        headers: {
+                            'Content-Type': 'application/json' // Indicate that the body is JSON
+                        },
+                        body: JSON.stringify(artigo) // Convert the JavaScript object to a JSON string
+                    })
+                }
+                atualizarLista();
+                limpaForm();
+                fecharTelaCadastro()
+            }
+
+            function limpaForm() {
+                manchete.value = '';
+                dataPublicacao.value = '';
+                situacao.value = '';
+                conteudo.value = '';
+            }
+
+            function chamarTelaCadastro(){
+                telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
+            }
+
+            function fecharTelaCadastro(){
+                telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+                gravar.classList.remove('ocultaBotaoGravar');
+            }
+
+            function atualizarLista() {
+                fetch('/administracao/artigos')
+                    .then(response => {
+                        // Check if the request was successful (status code 200-299)
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        // Parse the response body as JSON
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Work with the fetched data
+                        listaArtigos.value = data;
+                    })
+                    .catch(error => {
+                        // Handle any errors during the fetch operation
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+
+            function visualizar(idArtigo) {
+                // mostrar registro individual
+                const url = `/administracao/artigos/${idArtigo}` 
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        id.value = idArtigo;
+                        manchete.value = data.manchete;
+                        dataPublicacao.value = data.dataPublicacao;
+                        situacao.value = data.situacao;
+                        conteudo.value = data.conteudo
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+                gravar.classList.add('ocultaBotaoGravar');
+                chamarTelaCadastro();
+            }
+
+            function editar(idArtigo) {
+                // console.log("Editando Registro do Usuário");
+                const url = `/administracao/artigos/${idArtigo}`
+                fetch(url)
+                    .then(response => {
+                        // Check if the request was successful (status code 200-299)
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        // Parse the response body as JSON
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Work with the fetched data
+                        id.value = idArtigo;
+                        manchete.value = data.manchete;
+                        dataPublicacao.value = data.dataPublicacao;
+                        situacao.value = data.situacao;
+                        conteudo.value = data.conteudo;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+                chamarTelaCadastro();
+            }
+
+            async function excluir(idArtigo) {
+                if (confirm('Deseja Realmenete Excluir o Registro?')) {
+                    await fetch(`/administracao/artigos/${idArtigo}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    atualizarLista();
+                }
+            }
+
+            atualizarLista()
+            return {
+                processaForm,
+                listaArtigos,
+                visualizar,
+                editar,
+                excluir,
+                limpaForm,
+                fecharTelaCadastro,
+                chamarTelaCadastro
+            }
+        }
+    }).mount('main')
+</script>
+
+
+
+
+
+
+<!-- 
 <script type="module">
     const novoRegistro = document.getElementById('novoRegistro');
 
@@ -90,7 +258,7 @@
     createApp({
         setup() {
             let listaArtigos = ref([]);
-            async function processaForm() {
+            async function processaForm(){
                 let artigo = {
                     id: id.value,
                     manchete: manchete.value,
@@ -233,4 +401,4 @@
         }
     }).mount('main')
 
-</script>
+</script> -->

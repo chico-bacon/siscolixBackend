@@ -56,8 +56,9 @@ enum Situacao {
 }
 
 model Bairro {
-  id   Int    @id @default(autoincrement())
-  nome String
+  id            Int    @id @default(autoincrement())
+  nome          String
+  situacao      Situacao @default(ATIVO)
   Rota Rota[]
 }
 
