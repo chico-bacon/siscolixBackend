@@ -1,5 +1,8 @@
 import { prismaClient } from '../database/prismaClient.js'
-import { Nivel } from '@prisma/client'
+// import { Nivel } from '@prisma/client'
+import pkg from '@prisma/client';
+const { Nivel } = pkg;
+
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 

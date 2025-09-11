@@ -11,8 +11,8 @@
         <button id="novoRegistro"><img src="\img\icons\add.svg" alt="" title="Novo Registro"></button>
     </div>
 </div>
-<main>
 
+<main>
     <div class="listaDados">
         <table class="tbLista">
             <tr class="cabecalhoLista">
@@ -45,61 +45,68 @@
         </table>
     </div>
 
-
-
-    <!-- ocultaTelaPopupCadastro -->
     <div id="telaPopupCadastro" class="telaPopupCadastro ocultaTelaPopupCadastro"> 
         <div class="telaFormCadastro">
-            <h1>Novo Cadastro de Cronograma</h1>
-            <button id="cancelar" class="botaoPadrao">Cancelar</button>
+            <div class="tituloFormulario">
+                <h1>Novo Cadastro de Cronograma</h1>
+                <button class="btFecharFormulario" @click="fecharTelaCadastro()">X</button>
+            </div>
             <div class="formCadastro">
                 <form @submit.prevent="processaForm()">
-                    <input type="text" value="0" id="id">
-                    <label for="nome">
-                        <span>Nome</span>
-                        <input type="text" id="nome" name="nome">
-                    </label>
+                    <input type="hidden" value="0" id="id">
                     <div class="subDivCadastro">
-                        <span>
-                            <label for="cpf">CPF</label>
-                            <input type="text" id="cpf" name="cpfUsuario">
-                        </span>
-                        <span>
-                            <label for="dataNascimento">Data de Nascimento</label>
-                            <input type="text" id="dataNascimento" name="Nascimento">
-                        </span>
-                    </div>
-
-
-                    <div class="subDivCadastro">
-                        <!-- <label>
+                        <label for="nome">
                             <span>Nome</span>
-                            <input name="nome" />
-                        </label> -->
-                        <label for="email">
-                            <span>E-Mail</span>
-                            <input type="text" id="email" name="email">
-                        </label>
-                        <label for="telfone">
-                            <span>Telefone</span>
-                            <input type="text" id="telefone" name="telefone">
+                            <input type="text" id="nome" name="nome">
                         </label>
                     </div>
                     <div class="subDivCadastro">
-                        <label>
-                            <span>Nível</span>
-                            <select id="nivel" name="nivel">
-                                <option value="ADMINISTRADOR">Administrador</option>
-                                <option value="USUARIO">Contribuinte</option>
-                            </select>
-                        </label>
-                        <label>
-                            <span>Situação</span>
-                            <select id="situacao" name="situacao">
-                                <option value="INATIVO">Inatívo</option>
-                                <option value="ATIVO">Ativo</option>
-                            </select>
-                        </label>
+                        <div>
+                            <span>
+                                <label for="cpf">CPF</label>
+                                <input type="text" id="cpf" name="cpfUsuario">
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                <label for="dataNascimento">Data de Nascimento</label>
+                                <input type="text" id="dataNascimento" name="Nascimento">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="subDivCadastro">
+                        <div>
+                            <label for="email">
+                                <span>E-Mail</span>
+                                <input type="text" id="email" name="email">
+                            </label>
+                        </div>
+                        <div>
+                            <label for="telfone">
+                                <span>Telefone</span>
+                                <input type="text" id="telefone" name="telefone">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="subDivCadastro">
+                        <div>
+                            <label>
+                                <span>Nível</span>
+                                <select id="nivel" name="nivel">
+                                    <option value="ADMINISTRADOR">Administrador</option>
+                                    <option value="USUARIO">Contribuinte</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <span>Situação</span>
+                                <select id="situacao" name="situacao">
+                                    <option value="INATIVO">Inatívo</option>
+                                    <option value="ATIVO">Ativo</option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
                     <div class="div_botoesCadastro">
                         <button id="gravar" class="botaoPadrao">Gravar</button>
@@ -109,21 +116,12 @@
         </div>
     </div>
 </main>
+
 <script type="module">
     const novoRegistro = document.getElementById('novoRegistro');
-    const cancelar = document.getElementById('cancelar');
-    const gravar = document.getElementById('gravar');
 
     novoRegistro.addEventListener("click",(evt)=>{
         telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
-    });
-
-    cancelar.addEventListener("click",(evt)=>{
-        telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
-    });
-
-    gravar.addEventListener("click",(evt)=>{
-        console.log('Clicou no Botão Gravar!!!');
     });
 
     import { createApp, ref, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
@@ -159,12 +157,12 @@
                         },
                         body: JSON.stringify(usuario) // Convert the JavaScript object to a JSON string
                     })
-                    
                 }
-                visualizar();
-                telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
-                console.log('Inserindo novo Usuario: ', listaUsuarios);
+                limpaForm();
+                atualizarLista();
+                fecharTelaCadastro()
             }
+
             function limpaForm(){
                 nome.value = '';
                 cpf.value = '';
@@ -174,41 +172,43 @@
                 nivel.value = '';
                 situacao.value = '';
             }
-            function visualizar() {
-                console.log("Visualizando Registro do Usuário");
+
+            function chamarTelaCadastro(){
+                telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
+            }
+
+            function fecharTelaCadastro(){
+                telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+                gravar.classList.remove('ocultaBotaoGravar');
+            }
+
+            function atualizarLista(){
                 fetch('/administracao/usuarios')
                     .then(response => {
-                        // Check if the request was successful (status code 200-299)
                         if (!response.ok) {
                             throw new Error(`HTTP error! status: ${response.status}`);
                         }
-                        // Parse the response body as JSON
                         return response.json();
                     })
                     .then(data => {
-                        // Work with the fetched data
                         listaUsuarios.value = data;
                     })
                     .catch(error => {
-                        // Handle any errors during the fetch operation
                         console.error('There was a problem with the fetch operation:', error);
                     });
             }
 
-            function editar(idUsuario){
-                console.log("Editando Registro do Usuário");
+            function visualizar(idUsuario) {
+                // mostra registro individual
                 const url = `/administracao/usuarios/${idUsuario}` 
                 fetch(url)
                     .then(response => {
-                        // Check if the request was successful (status code 200-299)
                         if (!response.ok) {
                             throw new Error(`HTTP error! status: ${response.status}`);
                         }
-                        // Parse the response body as JSON
                         return response.json();
                     })
                     .then(data => {
-                        // Work with the fetched data
                         id.value = idUsuario;
                         nome.value = data.nome;
                         cpf.value = data.cpf;
@@ -219,23 +219,59 @@
                         situacao.value = data.situacao;
                     })
                     .catch(error => {
-                        // Handle any errors during the fetch operation
                         console.error('There was a problem with the fetch operation:', error);
                     });
-                
-                telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
+                gravar.classList.add('ocultaBotaoGravar');
+                chamarTelaCadastro();
             }
-            function excluir(){
-                console.log("Excluindo Registro do Usuário");
+
+            function editar(idUsuario){
+                const url = `/administracao/usuarios/${idUsuario}` 
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        id.value = idUsuario;
+                        nome.value = data.nome;
+                        cpf.value = data.cpf;
+                        dataNascimento.value = data.dataNascimento;
+                        email.value = data.email;
+                        telefone.value = data.telefone;
+                        nivel.value = data.nivel;   
+                        situacao.value = data.situacao;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+                chamarTelaCadastro();
             }
-            visualizar()
+
+            async function excluir(idUsuario){
+                if(confirm('Deseja Realmenete Excluir o Registro?')){
+                    await fetch(`/administracao/usuarios/${idUsuario}`, {
+                        method: 'DELETE', 
+                        headers: {
+                            'Content-Type': 'application/json' 
+                        }
+                    })
+                    atualizarLista();
+                }
+            }
+
+            atualizarLista()
             return {
                 processaForm,
                 listaUsuarios,
                 visualizar,
                 editar,
                 excluir,
-                limpaForm
+                limpaForm,
+                fecharTelaCadastro,
+                chamarTelaCadastro
             }
         }
     }).mount('main')

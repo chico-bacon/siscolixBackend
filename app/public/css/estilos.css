@@ -745,10 +745,11 @@ footer{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 87.5vh;
+    /* height: 87.5vh; */
+    height: 100vh;
     background: rgba(0, 0, 0, 0.5);
     width: 100%;
-    margin-top: -252px !important;
+    margin-top: -400px !important;
     border-radius: 20px  0px 0px 0px;
     transition: all 0.9s;
 }
@@ -757,6 +758,11 @@ footer{
     visibility: hidden;
     margin-bottom: -2100px !important;
     transition: all 0.9s;
+}
+.ocultaBotaoGravar{
+    display: none;
+    /* visibility: hidden;
+    margin-bottom: -2100px !important; */
 }
 
 .telaFormCadastro{
@@ -789,7 +795,7 @@ footer{
     /* border: 1px solid #008; */
 }
 .formCadastro span label,input,select{
-    font-size: 20px;
+    font-size: 1rem;
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 5px;
     border-radius: 10px;
@@ -916,3 +922,46 @@ footer{
 #btMenu{
     background-color: #aaa;
 }
+
+.tituloFormulario{
+    display: flex;
+    margin-bottom: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+
+}
+.subDivCadastro{
+    display: flex;
+    margin-bottom: .5rem;
+    justify-content: space-between;
+
+    /* border: 1px solid #000; */
+}
+.subDivCadastro div{
+    width: 50%;
+    padding: .5rem;
+
+
+    /* border: 1px solid #800; */
+}
+.subDivCadastro input, .subDivCadastro select, .subDivCadastro label{
+    width: 100%;
+}
+.btFecharFormulario{
+    width: 2rem;
+    font-size: 20px;
+    background-color: var(--corBotaoPadrao);
+    padding: .5rem;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+
+
+}
+/* 
+#lbSituacaoUsuario{
+    margin-left: .7rem;
+} */
+
+/* .telaFormCadastro */

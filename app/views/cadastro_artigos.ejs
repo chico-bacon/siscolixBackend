@@ -1,5 +1,4 @@
 <%- include('cabecalho') %>
-
 <div class="cabecalhoCadastro">
     <button id="btMenu"><a href="\administracao"><img src="\img\icons\menu.svg" alt="Menu"></a></button>
     <p>Cadastro de Artigos</p>
@@ -8,85 +7,230 @@
         <input type="text" name="filtrar" id="filtrar">
     </div>
     <div class="pesquisar">
-        <!-- img\icons\search.svg -->
         <button><img src="" alt="" title="Pesquisar"></button>
         <button><img src="\img\icons\search.svg" alt="" title="Pesquisar"></button>
         <button id="novoRegistro"><img src="\img\icons\add.svg" alt="" title="Novo Registro"></button>
     </div>
 </div>
 
-<div class="listaDados">
-    <table class="tbLista">
-        <tr class="cabecalhoLista">
-            <th class="thId">id</th>
-            <th class="thSituacao">Situação</th>
-            <th class="thdataPublicacao">Data da Publicação</th>
-            <th class="thmanchete">Manchete</th>
-            <th class="thAcoes">Ações</th>
-        </tr>
-        <tbody  class="linhasArtigo">   
-            <tr v-for="artigo in listaArtigos" :key="artigo.id">
-                <td class="tdId">{{ artigo.id }}</td>
-                <td class="tdSituacao">{{ artigo.situacao }}</td>
-                <td class="tddataPublicacao">{{ artigo.dataPublicacao }}</td>
-                <td class="tdmanchete">{{ artigo.manchete }}</td>
-                <td class="tdAcoes">
-                    <img src="/img/icons/visualizar.svg" @click="visualizar">
-                    <img src="/img/icons/editar.svg" @click="editar">
-                    <img src="/img/icons/deletar.svg"  @click="excluir">
-                </td>
+<main>
+    <div class="listaDados">
+        <table class="tbLista">
+            <tr class="cabecalhoLista">
+                <th class="thId">id</th>
+                <th class="thSituacao">Situação</th>
+                <th class="thdataPublicacao">Data da Publicação</th>
+                <th class="thmanchete">Manchete</th>
+                <th class="thAcoes">Ações</th>
             </tr>
-        </tbody>
-    </table>
-</div>
+            <tbody class="linhasArtigo">
+                <tr v-for="artigo in listaArtigos" :key="artigo.id">
+                    <td class="tdId">{{ artigo.id }}</td>
+                    <td class="tdSituacao">{{ artigo.situacao }}</td>
+                    <td class="tddataPublicacao">{{ artigo.dataPublicacao }}</td>
+                    <td class="tdmanchete">{{ artigo.manchete }}</td>
+                    <td class="tdAcoes">
+                        <img src="/img/icons/visualizar.svg" @click="visualizar(artigo.id)">
+                        <img src="/img/icons/editar.svg" @click="editar(artigo.id)">
+                        <img src="/img/icons/deletar.svg" @click="excluir(artigo.id)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-
-<div id="telaPopupCadastro" class="telaPopupCadastro ocultaTelaPopupCadastro"> 
-    <div class="telaFormCadastro">
-        <h1>Novo Cadastro de Cronograma</h1>
-        <div class="formCadastro">
-            <form action="">
-            <!-- <form action=""> -->
-                <span>
-                    <label for="manchete">Manchete</label>
-                    <input type="text" id="manchete">
-                </span>
-                <span>
-                    <label for="situacao">Situacao</label>
-                    <select name="situacao">
-                        <!-- <option value=""></option> -->
-                        <option value="1">Ativo</option>
-                        <option value="0">Inativo</option>
-                    </select>
-                </span>
-                <span>
-                    <label for="dataPublicacao">Data da Publicação</label>
-                    <input type="text" id="dataPublicacao">
-                </span>
-                <span>
-                    <label for="conteudo">Conteudo da Matéria</label>
-                    <input type="text" id="conteudo">
-                </span>
-                <div class="div_botoesCadastro">
-                    <button id="gravar" class="botaoPadrao">Gravar</button>
-                    <button id="cancelar" class="botaoPadrao">Cancelar</button>
-                </div>
-            </form>
+    <div id="telaPopupCadastro" class="telaPopupCadastro ocultaTelaPopupCadastro">
+        <div class="telaFormCadastro">
+            <div class="tituloFormulario">
+                <h1>Novo Cadastro de Artigo</h1>
+                <button class="btFecharFormulario" @click="fecharTelaCadastro()">X</button>
+            </div>
+            <div class="formCadastro">
+                <form @submit.prevent="processaForm()">
+                    <input type="hidden" value="0" id="id">
+                    <span>
+                        <label for="manchete">Manchete</label>
+                        <input type="text" id="manchete">
+                    </span>
+                    <span>
+                        <label for="situacao">Situacao</label>
+                        <select name="situacao">
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
+                        </select>
+                    </span>
+                    <span>
+                        <label for="dataPublicacao">Data da Publicação</label>
+                        <input type="text" id="dataPublicacao">
+                    </span>
+                    <span>
+                        <label for="conteudo">Conteudo da Matéria</label>
+                        <input type="text" id="conteudo">
+                    </span>
+                    <div class="div_botoesCadastro">
+                        <button id="gravar" class="botaoPadrao">Gravar</button>
+                        <!-- <button id="cancelar" class="botaoPadrao">Cancelar</button> -->
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</main>
 
 <script>
     const novoRegistro = document.getElementById('novoRegistro');
-    const cancelar = document.getElementById('cancelar');
 
-    novoRegistro.addEventListener("click",(evt)=>{
+    novoRegistro.addEventListener("click", (evt) => {
         telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
     });
 
-    cancelar.addEventListener("click",(evt)=>{
-        telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
-    });
+    import { createApp, ref, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+    import { createApp, ref, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+
+    createApp({
+        setup() {
+            let listaArtigos = ref([]);
+            async function processaForm() {
+                let artigo = {
+                    id: id.value,
+                    manchete: manchete.value,
+                    dataPublicacao: dataPublicacao.value,
+                    situacao: situacao.value,
+                    conteudo: conteudo.value
+                }
+                if (id.value == "0") {
+                    await fetch('/artigos', {
+                        method: 'POST', // Specify the HTTP method as POST
+                        headers: {
+                            'Content-Type': 'application/json' // Indicate that the body is JSON
+                        },
+                        body: JSON.stringify(artigos) // Convert the JavaScript object to a JSON string
+                    });
+
+                } else {
+                    await fetch(`/administracao/artigos/${id.value}`, {
+                        method: 'PUT', // Specify the HTTP method as POST
+                        headers: {
+                            'Content-Type': 'application/json' // Indicate that the body is JSON
+                        },
+                        body: JSON.stringify(artigos) // Convert the JavaScript object to a JSON string
+                    })
+                }
+                atualiarLista();
+                telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+            }
+
+            function limpaForm() {
+                manchete.value = '';
+                dataPublicacao.value = '';
+                situacao.value = '';
+                conteudo.value = '';
+            }
+
+            function chamarTelaCadastro() {
+                telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
+            }
+
+            function fecharTelaCadastro() {
+                telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+                gravar.classList.remove('ocultaBotaoGravar');
+            }
+
+            function atualiarLista() {
+                fetch('/administracao/artigos')
+                    .then(response => {
+                        // Check if the request was successful (status code 200-299)
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        // Parse the response body as JSON
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Work with the fetched data
+                        listaArtigos.value = data;
+                    })
+                    .catch(error => {
+                        // Handle any errors during the fetch operation
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+
+            function visualizar(idArtigo) {
+                // mostrar registro individual
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        id.value = idArtigo;
+                        manchete.value = data.manchete;
+                        dataPublicacao.value = data.dataPublicacao;
+                        situacao.value = data.situacao;
+                        conteudo.value = data.conteudo
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+                gravar.classList.add('ocultaBotaoGravar');
+                chamarTelaCadastro();
+
+            }
+
+            function editar(idArtigo) {
+                // console.log("Editando Registro do Usuário");
+                const url = `/administracao/artigos/${idArtigo}`
+                fetch(url)
+                    .then(response => {
+                        // Check if the request was successful (status code 200-299)
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        // Parse the response body as JSON
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Work with the fetched data
+                        id.value = idArtigo;
+                        manchete.value = data.manchete;
+                        dataPublicacao.value = data.dataPublicacao;
+                        situacao.value = data.situacao;
+                        conteudo.value = data.conteudo;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+                chamaTelaCadastro();
+
+            }
+            
+            async function excluir(idArtigo) {
+                if (confirm('Deseja Realmenete Excluir o Registro?')) {
+                    await fetch(`/administracao/usuarios/${idArtigo}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    atualizarLista();
+                }
+
+                atualiarLista()
+                return {
+                    processaForm,
+                    listaArtigos,
+                    visualizar,
+                    editar,
+                    excluir,
+                    limpaForm,
+                    fecharTelaCadastro,
+                    chamarTelaCadastro
+                }
+            }
+        }
+    }).mount('main')
 
 </script>
-
