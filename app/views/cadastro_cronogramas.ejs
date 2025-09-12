@@ -13,127 +13,290 @@
     </div>
 </div>
 
-<div class="listaDados">
-    <table class="tbLista">
-        <tr class="cabecalhoLista">
-            <th class="thId">id</th>
-            <th class="thDescricao">Descrição</th>
-            <th class="thDescricao">Bairro</th>
-            <th class="thSituacao">Periodicidade</th>
-            <th class="thSituacao">Turno</th>
-            <th class="thSituacao">Situação</th>
-            <th class="thAcoes">Ações</th>
-            <!-- <th> testesase</th> -->
-            <!-- <th></th>
-            <th></th> -->
-        </tr>
-        <tbody  class="linhasCronograma">   
-            <tr v-for="cronograma in listaCronogramas" :key="cronograma.id">
-                <td class="tdId">{{ cronograma.id }}</td>
-                <td class="tdDescricao">{{ cronograma.descricao }}</td>
-                <td class="tdDescricao">{{ cronograma.bairro }}</td>
-                <td class="tdDescricao">{{ cronograma.periodicidade }}</td>
-                <td class="tdDescricao">{{ cronograma.turno }}</td>
-                <td class="tdSituacao">{{ cronograma.situacao }}</td>
-                <td class="tdAcoes">
-                    <img src="/img/icons/visualizar.svg" @click="visualizar">
-                    <img src="/img/icons/editar.svg" @click="editar">
-                    <img src="/img/icons/deletar.svg"  @click="excluir">
-                </td>
+<main>
+    <div class="listaDados">
+        <table class="tbLista">
+            <tr class="cabecalhoLista">
+                <th class="thId">id</th>
+                <th class="thDescricao">Descrição</th>
+                <th class="thDescricao">Bairro</th>
+                <th class="thSituacao">Dias</th>
+                <th class="thSituacao">Turno(s)</th>
+                <th class="thSituacao">Situação</th>
+                <th class="thAcoes">Ações</th>
+                <!-- <th> testesase</th> -->
+                <!-- <th></th>
+                <th></th> -->
             </tr>
-        </tbody>
-    </table>
-</div>
+            <tbody  class="linhasCronograma">   
+                <tr v-for="rota in listaRotas" :key="rota.id">
+                    <td class="tdId">{{ rota.id }}</td>
+                    <td class="tdDescricao">{{ rota.descricao }}</td>
+                    <td class="tdDescricao">{{ rota.bairro.nome }}</td>
+                    <td class="tdDescricao">{{ rota.dias }}</td>
+                    <td class="tdDescricao">{{ rota.turnos }}</td>
+                    <td class="tdSituacao">{{ rota.situacao }}</td>
+                    <td class="tdAcoes">
+                        <img src="/img/icons/visualizar.svg" @click="visualizar(rota.id)">
+                        <img src="/img/icons/editar.svg" @click="editar(rota.id)">
+                        <img src="/img/icons/deletar.svg"  @click="excluir(rota.id)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- ocultaTelaPopupCadastro -->
+    <div id="telaPopupCadastro" class="telaPopupCadastro ocultaTelaPopupCadastro"> 
+        <div class="telaFormCadastro">
+            <div class="tituloFormulario">
+                <h1>Novo Cadastro de Rota</h1>
+                <button class="btFecharFormulario" @click="fecharTelaCadastro">X</button>
+            </div>
+            <div class="formCadastro">
+                <form @submit.prevent="processaForm()">
+                    <input type="hidden" value="0" id="id">
 
-<!-- ocultaTelaPopupCadastro -->
-<div id="telaPopupCadastro" class="telaPopupCadastro ocultaTelaPopupCadastro"> 
-    <div class="telaFormCadastro">
-        <h1>Novo Cadastro de Cronograma</h1>
-        <div class="formCadastro">
-            <form action="">
-                <span>
-                    <label for="descricao">Descrição</label>
-                    <input type="text" id="descricao">
-                </span>
-                <span>
-                    <label for="bairro">Bairro</label>
-                    <select name="bairro">
-                        <!-- <option value=""></option> -->
-                        <option value="1">Centro</option>
-                        <option value="2">Carlotas</option>
-                        <option value="3">Torre</option>
-                    </select>
-                </span>
-                <label for="">Periodicidade</label>
-                <div class="periodicidade">
-                    <span>
-                        <label for="segunda">Segunda</label>
-                        <input type="checkbox" id="segunda" name="segunda">
-                    </span>
-                    <span>
-                        <label for="terca">Terça</label>
-                        <input type="checkbox" id="terca" name="terca">
-                    </span>
-                    <span>
-                        <label for="quarta">Quarta</label>
-                        <input type="checkbox" id="quarta" name="quarta">
-                    </span>
-                    <span>
-                        <label for="quinta">Quinta</label>
-                        <input type="checkbox" id="quinta" name="quinta">
-                    </span>
-                    <span>
-                        <label for="sexta">Sexta</label>
-                        <input type="checkbox" id="sexta" name="sexta">
-                    </span>
-                    <span>
-                        <label for="sabado">Sábado</label>
-                        <input type="checkbox" id="sabado" name="sabado">
-                    </span>
-                </div>
+                    <div class="subDivCadastro">
+                        <label for="descricao">
+                            <span>Descrição</span>
+                            <input type="text" id="descricao">
+                        </label>
+                    </div>
+                    <div class="subDivCadastro">
+                        <label for="bairro">
+                            <span>Bairro</span>
+                                <select id="bairro" v-for="bairro in listaBairros" :key="bairro.id">
+                                    <option value={{ bairro.id }}>{{ bairro.nome }}</option>
+                                    <!-- <option value="2">Carlotas</option>
+                                    <option value="3">Torre</option> -->
+                                    <!-- <option value=""></option> -->
+                                </select>
+                        </label>
+                    </div>
 
-                <label for="">Turno</label>
-                <div class="turno">
-                    <span>
-                        <label for="manha">Manhã</label>
-                        <input type="checkbox" id="manha" name="manha">
-                    </span>
-                    <span>
-                        <label for="tarde">Tarde</label>
-                        <input type="checkbox" id="tarde" name="tarde">
-                    </span>
-                    <span>
-                        <label for="noite">Noite</label>
-                        <input type="checkbox" id="noite" name="noite">
-                    </span>
+                    <!-- <div class="subDivCadastro">
+        
+                    </div> -->
+                    <label for="">Dias</label>
+                    <div class="periodicidade">
+                        <span>
+                            <label for="segunda">Segunda</label>
+                            <input type="checkbox" id="segunda" name="segunda">
+                        </span>
+                        <span>
+                            <label for="terca">Terça</label>
+                            <input type="checkbox" id="terca" name="terca">
+                        </span>
+                        <span>
+                            <label for="quarta">Quarta</label>
+                            <input type="checkbox" id="quarta" name="quarta">
+                        </span>
+                        <span>
+                            <label for="quinta">Quinta</label>
+                            <input type="checkbox" id="quinta" name="quinta">
+                        </span>
+                        <span>
+                            <label for="sexta">Sexta</label>
+                            <input type="checkbox" id="sexta" name="sexta">
+                        </span>
+                        <span>
+                            <label for="sabado">Sábado</label>
+                            <input type="checkbox" id="sabado" name="sabado">
+                        </span>
+                    </div>
+    
+                    <!-- <div class="subDivCadastro">
+        
+                    </div> -->
+                    <label for="">Turnos</label>
+                    <div class="turno">
+                        <span>
+                            <label for="manha">Manhã</label>
+                            <input type="checkbox" id="manha" name="manha">
+                        </span>
+                        <span>
+                            <label for="tarde">Tarde</label>
+                            <input type="checkbox" id="tarde" name="tarde">
+                        </span>
+                        <span>
+                            <label for="noite">Noite</label>
+                            <input type="checkbox" id="noite" name="noite">
+                        </span>
+                    </div>
+                    
+                    <div class="subDivCadastro">
+                        <label for="situacao">
+                            <span>Situação</span>
+                            <select name="situacao">
+                                <option value="0">Inatívo</option>
+                                <option value="1">Ativo</option>
+                            </select>
+                        </label>
+                    </div>
+                </form>
+                <div class="div_botoesCadastro">
+                    <button id="gravar" class="botaoPadrao">Gravar</button>
                 </div>
-                
-                <span>
-                    <label for="situacao">Situação</label>
-                    <select name="situacao">
-                        <option value="0">Inatívo</option>
-                        <option value="1">Ativo</option>
-                    </select>
-                </span>
-            </form>
-            <div class="div_botoesCadastro">
-                <button id="gravar" class="botaoPadrao">Gravar</button>
-                <button id="cancelar" class="botaoPadrao">Cancelar</button>
             </div>
         </div>
     </div>
-</div>
+</main>
 
-<script>
+
+<script type="module">
     const novoRegistro = document.getElementById('novoRegistro');
-    const cancelar = document.getElementById('cancelar');
 
     novoRegistro.addEventListener("click",(evt)=>{
         telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
     });
 
-    cancelar.addEventListener("click",(evt)=>{
-        telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
-    });
+    import { createApp, ref, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+    createApp({
+        setup() {
+            let listaRotas = ref([]);
+            let listaBairros = ref([]);
+            async function processaForm(){
+                
+                let rota={
+                    id: id.value,
+                    descricao: descricao.value,
+                    bairro: bairro.value,
+                    dias: diasString,
+                    turnos: turnosString,
+                    situacao: situacao.value
+                }
+                console.log(rota);
+                if (id.value == "0") {
+                    await fetch('/administracao/rotas', {
+                        method: 'POST', // Specify the HTTP method as POST
+                        headers: {
+                            'Content-Type': 'application/json' // Indicate that the body is JSON
+                        },
+                        body: JSON.stringify(rota) // Convert the JavaScript object to a JSON string
+                    });
+                    
+                } else {
+                    await fetch(`/administracao/bairros/${id.value}`, {
+                        method: 'PUT', // Specify the HTTP method as POST
+                        headers: {
+                            'Content-Type': 'application/json' // Indicate that the body is JSON
+                        },
+                        body: JSON.stringify(rota) // Convert the JavaScript object to a JSON string
+                    })
+                }
+                limpaForm();
+                atualizarLista();
+                fecharTelaCadastro()
+            }
 
+            function limpaForm(){
+                descricao.value = '';
+                bairro.value = '';
+                diasString = '';
+                turnosString = '';
+                situacao.value = '';
+            }
+
+            function chamarTelaCadastro(){
+                telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
+            }
+
+            function fecharTelaCadastro(){
+                telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
+                gravar.classList.remove('ocultaBotaoGravar');
+            }
+
+            function atualizarLista(){
+                fetch('/coletas')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        listaRotas.value = data;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+
+            function visualizar(idRota) {
+                // mostra registro individual
+                const url = `/administracao/rotas/${idRota}` 
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        id.value = idBairro;
+                        descricao.value = data.descricao;
+                        bairro.value = data.bairro;
+                        diasString = data.dias;
+                        turnosString = data.turnos;
+                        situacao.value = data.sistuacao;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+                gravar.classList.add('ocultaBotaoGravar');
+                chamarTelaCadastro();
+            }
+
+            function editar(idRota){
+                const url = `/rotas/${idRota}`;
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        id.value = idBairro;
+                        descricao.value = data.descricao;
+                        bairro.value = data.bairro;
+                        diasString = data.dias;
+                        turnosString = data.turnos;
+                        situacao.value = data.sistuacao;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+                chamarTelaCadastro();
+            }
+
+            async function excluir(idRota){
+                // console.log('Id do bairro:' + idBairro);
+                if(confirm('Deseja Realmenete Excluir o Registro?')){
+                    // /administracao/bairros/:id
+                    await fetch(`/administracao/bairros/${idRota}`, {
+                        method: 'DELETE', 
+                        headers: {
+                            'Content-Type': 'application/json' 
+                        }
+                    })
+                    atualizarLista();
+                }
+            }
+
+            atualizarLista()
+            return {
+                processaForm,
+                listaRotas,
+                listaBairros,
+                visualizar,
+                editar,
+                excluir,
+                limpaForm,
+                fecharTelaCadastro,
+                chamarTelaCadastro
+            }
+        }
+    }).mount('main')
 </script>

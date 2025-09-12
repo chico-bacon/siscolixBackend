@@ -25,10 +25,8 @@
                     <h3>Cadastros</h3>
                     <button id="artigos" class="btn_menuItem"><a href="/administracao/artigos/cadastro">Artigos</a></button>
                     <button id="bairros" class="btn_menuItem"><a href="/administracao/bairros/cadastro">Bairros</a></button>
-                    <button id="perfis" class="btn_menuItem">Perfis</button>
                     <button id="cronogramas" class="btn_menuItem"><a href="/administracao/coleta/cadastro">Cronogramas</a></button>
                     <button id="usuarios" class="btn_menuItem"><a href="/administracao/usuarios/cadastro">Usuários</a></button>
-                    <button id="veiculos'" class="btn_menuItem">Veiculos</button>
                     <h3>Eventos</h3>
                     <button id="chamados" class="btn_menuItem">Chamados</button>
                     <h3>Ferramentas</h3>
@@ -54,19 +52,17 @@
     <%- include('rodape') %>
 
 <script>
-    const { createApp } = Vue
+    // const { createApp } = Vue
 
     const btn_menuPrincipal = document.getElementById('btn_menuPrincipal');
     const menuPrincipal = document.getElementById('menuPrincipal');
     const menuItens = document.getElementById('menuItens');
     const frameAdministracao = document.getElementById('frameAdministracao');
     const btFecharFrame = document.getElementById('btFecharFrame');
-    // const novoRegistro = document.getElementById('novoRegistro');
     const telaPopupCadastro = document.getElementById('telaPopupCadastro');
     const cancelar = document.getElementById('cancelar');
     const artigos = document.getElementById('artigos');
     const bairros = document.getElementById('bairros');
-    const perfis = document.getElementById('perfis');
     const cronogramas = document.getElementById('cronogramas');
     const usuarios = document.getElementById('usuarios');
     const chamados = document.getElementById('chamados');
@@ -74,21 +70,21 @@
     const consultas = document.getElementById('consultas');
     const telaCadastro = document.getElementById('telaCadastro');
 
-    let nomeDaPagina = '';
+    // let nomeDaPagina = '';
 
     btn_menuPrincipal.addEventListener("click",(evt)=>{
         menuPrincipal.classList.toggle("ocultarMenuLateral");
-        nomeDaPagina.value = 'Nome da Pagina';
+        // nomeDaPagina.value = 'Nome da Pagina';
     });
     
-    menuItens.addEventListener("click",(evt)=>{
-        frameAdministracao.classList.toggle("ocultarframeAdministracao");
-        menuPrincipal.classList.toggle("ocultarMenuLateral");
-    });
+    // menuItens.addEventListener("click",(evt)=>{
+    //     frameAdministracao.classList.toggle("ocultarframeAdministracao");
+    //     menuPrincipal.classList.toggle("ocultarMenuLateral");
+    // });
 
-    btFecharFrame.addEventListener("click",(evt)=>{
-        frameAdministracao.classList.toggle("ocultarframeAdministracao");
-    });
+    // btFecharFrame.addEventListener("click",(evt)=>{
+    //     frameAdministracao.classList.toggle("ocultarframeAdministracao");
+    // });
     
     // const novoRegistro = document.getElementById('novoRegistro');
     // novoRegistro.addEventListener("click",(evt)=>{
@@ -99,30 +95,30 @@
     //     telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
     // });
 
-    artigos.addEventListener("click",(evt)=>{
-        nomeDaPagina = 'Pagina de Artigos...';
-        console.log(nomeDaPagina);
-    });
+    // artigos.addEventListener("click",(evt)=>{
+    //     nomeDaPagina = 'Pagina de Artigos...';
+    //     console.log(nomeDaPagina);
+    // });
     
-    bairros.addEventListener("click",(evt)=>{
-        nomeDaPagina = 'Pagina de Bairros...';
-        console.log(nomeDaPagina);
-    });
+    // bairros.addEventListener("click",(evt)=>{
+    //     nomeDaPagina = 'Pagina de Bairros...';
+    //     console.log(nomeDaPagina);
+    // });
     
-    perfis.addEventListener("click",(evt)=>{
-        nomeDaPagina = 'Pagina de Perfis...';
-        console.log(nomeDaPagina);
-    });
+    // perfis.addEventListener("click",(evt)=>{
+    //     nomeDaPagina = 'Pagina de Perfis...';
+    //     console.log(nomeDaPagina);
+    // });
     
-    cronogramas.addEventListener("click",(evt)=>{
-        nomeDaPagina = 'Pagina de Cronogramas...';
-        console.log(nomeDaPagina);
-    });
+    // cronogramas.addEventListener("click",(evt)=>{
+    //     nomeDaPagina = 'Pagina de Cronogramas...';
+    //     console.log(nomeDaPagina);
+    // });
 
-    usuarios.addEventListener("click",(evt)=>{
-        nomeDaPagina = 'Pagina de Usuários...';
-        console.log(nomeDaPagina);
-    });
+    // usuarios.addEventListener("click",(evt)=>{
+    //     nomeDaPagina = 'Pagina de Usuários...';
+    //     console.log(nomeDaPagina);
+    // });
 
     // chamados.addEventListener("click",(evt)=>{
     //     nomeDaPagina = 'Pagina de Chamados...';

@@ -1,7 +1,8 @@
 <%- include('cabecalho')%>
 
 <div class="cabecalhoCadastro">
-    <button id="btMenu"><a href="\administracao"><img src="\img\icons\menu.svg" alt="Menu"></a></button>    <p>Cadastro de Bairros</p>
+    <button id="btMenu"><a href="\administracao"><img src="\img\icons\menu.svg" alt="Menu"></a></button>    
+    <p>Cadastro de Bairros</p>
     <div class="filtrar">
         <label for="filtrar">Filtrar por:</label>
         <input type="text" name="filtrar" id="filtrar">
@@ -47,7 +48,7 @@
 
             <div class="formCadastro">
                 <form @submit.prevent="processaForm()">
-                    <input type="text" value="0" id="id">
+                    <input type="hidden" value="0" id="id">
                     <div class="subDivCadastro">
                         <label>
                             <span>Nome do Bairro</span>
@@ -215,20 +216,3 @@
         }
     }).mount('main')
 </script>
-
-
-
-<!-- 
-<script>
-    const novoRegistro = document.getElementById('novoRegistro');
-    const cancelar = document.getElementById('cancelar');
-
-    novoRegistro.addEventListener("click",(evt)=>{
-        telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
-    });
-
-    cancelar.addEventListener("click",(evt)=>{
-        telaPopupCadastro.classList.add("ocultaTelaPopupCadastro");
-    });
-
-</script> -->

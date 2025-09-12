@@ -64,10 +64,12 @@ model Bairro {
 
 model Rota {
   id        Int    @id @default(autoincrement())
+  descricao String
   bairro    Bairro @relation(fields: [id_bairro], references: [id])
   id_bairro Int
   dias      String
   turnos    String
+  situacao  Situacao @default(ATIVO)
 }
 
 /**

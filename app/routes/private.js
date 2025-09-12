@@ -26,7 +26,7 @@ router.delete('/administracao/bairros/:id', (req, res) => bairroController.delet
 //ROTAS PRIVADAS DE GERENCIAMENTO DE COLETAS
 router.get('/administracao/coleta/cadastro', (req, res) => coletaController.cadastro(req, res));
 router.post('/administracao/coletas', (req, res) => coletaController.inserir(req, res));
-router.put('/administracao/coletas/:id', (req, res) => scoletaController.alterar(req, res));
+router.put('/administracao/coletas/:id', (req, res) => coletaController.alterar(req, res));
 router.delete('/administracao/coletas/:id', (req, res) => coletaController.deletar(req, res));
 
 //ROTAS PRIVADAS DE GERENCIAMENTO DE AGENDAS
@@ -47,10 +47,10 @@ router.post('/administracao/bairros', (req, res) => bairroController.inserir(req
 router.put('/administracao/bairros/:id', (req, res) => bairroController.alterar(req, res));
 router.delete('/administracao/bairros/:id', (req, res) => bairroController.deletar(req, res));
 
-router.get('/administracao/cronogramas/cadastro', (req, res) => cronogramaController.cadastro(req, res));
-router.post('/administracao/cronogramas', (req, res) => cronogramaController.inserir(req, res));
-router.put('/administracao/cronogramas/:id', (req, res) => cronogramaController.alterar(req, res));
-router.delete('/administracao/cronogramas/:id', (req, res) => cronogramaController.deletar(req, res));
+// router.get('/administracao/cronogramas/cadastro', (req, res) => cronogramaController.cadastro(req, res));
+// router.post('/administracao/cronogramas', (req, res) => cronogramaController.inserir(req, res));
+// router.put('/administracao/cronogramas/:id', (req, res) => cronogramaController.alterar(req, res));
+// router.delete('/administracao/cronogramas/:id', (req, res) => cronogramaController.deletar(req, res));
 
 router.get('/administracao/niveis/Cadastro', (req, res) => nivelController.cadastro(req, res));
 router.get('/administracao/niveis', (req, res) => nivelController.listar(req, res))

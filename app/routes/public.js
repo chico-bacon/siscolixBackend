@@ -44,9 +44,9 @@ router.get('/administracao', (req, res) => administracaoController.administracao
 
 // router.get('/administracaoCadastroArtigos', (req, res) => administracaoController.administracaoCadastroArtigos(req, res));
 
-router.get('/cronogramas', (req, res) => cronogramaController.cronogramas(req, res));
-router.get('/cronogramas', (req, res) => cronogramaController.listar(req, res));
-router.get('/cronogramas/:id', (req, res) => cronogramaController.buscarPorId(req, res));
+// router.get('/cronogramas', (req, res) => cronogramaController.cronogramas(req, res));
+// router.get('/cronogramas', (req, res) => cronogramaController.listar(req, res));
+// router.get('/cronogramas/:id', (req, res) => cronogramaController.buscarPorId(req, res));
 
 router.get('/bairros', (req, res) => bairroController.listar(req, res));
 router.get('/bairros/:id', (req, res) => bairroController.buscarPorId(req, res));
