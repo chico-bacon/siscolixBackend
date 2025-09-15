@@ -6,7 +6,7 @@ import { IndexController } from '../controllers/IndexController.js';
 import { ContatosController } from '../controllers/ContatosController.js';
 import { ColetaController } from "../controllers/ColetaController.js";
 import { AgendaController } from "../controllers/AgendaController.js";
-import { CronogramaController } from '../controllers/CronogramaController.js';
+// import { CronogramaController } from '../controllers/CronogramaController.js';
 import { AdministracaoController } from '../controllers/AdministracaoController.js';
 import { ArtigoController } from "../controllers/ArtigoController.js";
 import { UsuarioController } from "../controllers/UruariosController.js";
@@ -26,7 +26,7 @@ const agendaController = new AgendaController();
 
 //const indexController = new IndexController();
 //const contatosController = new ContatosController();
-const cronogramaController = new CronogramaController();
+// const cronogramaController = new CronogramaController();
 const administracaoController = new AdministracaoController();
 const artigoController = new ArtigoController();
 const usuarioController = new UsuarioController();

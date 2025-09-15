@@ -24,9 +24,6 @@
                 <th class="thSituacao">Turno(s)</th>
                 <th class="thSituacao">Situação</th>
                 <th class="thAcoes">Ações</th>
-                <!-- <th> testesase</th> -->
-                <!-- <th></th>
-                <th></th> -->
             </tr>
             <tbody  class="linhasCronograma">   
                 <tr v-for="rota in listaRotas" :key="rota.id">
@@ -58,31 +55,31 @@
                     <input type="hidden" value="0" id="id">
 
                     <div class="subDivCadastro">
-                        <label for="descricao">
+                        <label>
                             <span>Descrição</span>
                             <input type="text" id="descricao">
                         </label>
                     </div>
                     <div class="subDivCadastro">
-                        <label for="bairro">
+                        <label>
                             <span>Bairro</span>
+                                <input type="text" id="bairro">
+
+                                <!-- <v-select
+                                :options="options"
+                                :value="person.country"
+                                @input="(country) => updateCountry(person, country)"
+                                />
                                 <select id="bairro" v-for="bairro in listaBairros" :key="bairro.id">
                                     <option value={{ bairro.id }}>{{ bairro.nome }}</option>
-                                    <!-- <option value="2">Carlotas</option>
-                                    <option value="3">Torre</option> -->
-                                    <!-- <option value=""></option> -->
-                                </select>
+                                </select> -->
                         </label>
                     </div>
-
-                    <!-- <div class="subDivCadastro">
-        
-                    </div> -->
                     <label for="">Dias</label>
                     <div class="periodicidade">
                         <span>
                             <label for="segunda">Segunda</label>
-                            <input type="checkbox" id="segunda" name="segunda">
+                            <input type="checkbox" id="segunda" name="segunda"  v-model="toggle" true-value="yes" false-value="no">
                         </span>
                         <span>
                             <label for="terca">Terça</label>
@@ -106,9 +103,6 @@
                         </span>
                     </div>
     
-                    <!-- <div class="subDivCadastro">
-        
-                    </div> -->
                     <label for="">Turnos</label>
                     <div class="turno">
                         <span>
@@ -126,18 +120,18 @@
                     </div>
                     
                     <div class="subDivCadastro">
-                        <label for="situacao">
+                        <label>
                             <span>Situação</span>
-                            <select name="situacao">
+                            <select id="situacao">
                                 <option value="0">Inatívo</option>
                                 <option value="1">Ativo</option>
                             </select>
                         </label>
                     </div>
+                    <div class="div_botoesCadastro">
+                        <button id="gravar" class="botaoPadrao">Gravar</button>
+                    </div>
                 </form>
-                <div class="div_botoesCadastro">
-                    <button id="gravar" class="botaoPadrao">Gravar</button>
-                </div>
             </div>
         </div>
     </div>
@@ -146,6 +140,13 @@
 
 <script type="module">
     const novoRegistro = document.getElementById('novoRegistro');
+    // const segunda = document.getElementById('segunda');
+
+    // segunda.addEventListener("click",(evt)=>{
+    //     console.log(segunda.checked)
+    //     segunda.checked = true;
+    //     console.log(segunda.checked)
+    // });
 
     novoRegistro.addEventListener("click",(evt)=>{
         telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
@@ -156,19 +157,33 @@
         setup() {
             let listaRotas = ref([]);
             let listaBairros = ref([]);
+            // let bairro = '';
+            // let toggle = segunda.checked.value;
             async function processaForm(){
-                
+                let diasString = segunda.checked.value;
+                // console.log(segunda.value);
+
+                // if (segunda.checked){
+                //     diasString = '2';
+                // }
+                // console.log(diasString);
+                let turnosString ='Teste Turno';
+                let situacao = 'teste situaçao';
+                    
+                periodicidade();
+
                 let rota={
                     id: id.value,
                     descricao: descricao.value,
-                    bairro: bairro.value,
+                    bairro: 'Bairro Teste',
                     dias: diasString,
                     turnos: turnosString,
-                    situacao: situacao.value
+                    situacao: 'Situacao'
                 }
                 console.log(rota);
                 if (id.value == "0") {
-                    await fetch('/administracao/rotas', {
+                    console.log('Entrou pra fazer o fetch!!!');
+                    await fetch('/administracao/coletas', {
                         method: 'POST', // Specify the HTTP method as POST
                         headers: {
                             'Content-Type': 'application/json' // Indicate that the body is JSON
@@ -177,7 +192,7 @@
                     });
                     
                 } else {
-                    await fetch(`/administracao/bairros/${id.value}`, {
+                    await fetch(`/administracao/coletas/${id.value}`, {
                         method: 'PUT', // Specify the HTTP method as POST
                         headers: {
                             'Content-Type': 'application/json' // Indicate that the body is JSON
@@ -190,12 +205,18 @@
                 fecharTelaCadastro()
             }
 
+            function periodicidade(){
+                console.log(segunda.checked);
+                // segunda.checked.value
+
+            }
+
             function limpaForm(){
                 descricao.value = '';
-                bairro.value = '';
-                diasString = '';
-                turnosString = '';
-                situacao.value = '';
+                // bairro.value = '';
+                // diasString = '';
+                // turnosString = '';
+                // situacao.value = '';
             }
 
             function chamarTelaCadastro(){
@@ -295,7 +316,8 @@
                 excluir,
                 limpaForm,
                 fecharTelaCadastro,
-                chamarTelaCadastro
+                chamarTelaCadastro,
+                checked: true
             }
         }
     }).mount('main')

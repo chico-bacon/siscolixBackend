@@ -911,6 +911,7 @@ footer{
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    flex-wrap: wrap;
     border-top: 1px solid #000;
     /* border-bottom: 1px solid #000; */
     
