@@ -60,21 +60,21 @@
                             <input type="text" id="descricao">
                         </label>
                     </div>
+                    
                     <div class="subDivCadastro">
                         <label>
                             <span>Bairro</span>
-                                <input type="text" id="bairro">
-
-                                <!-- <v-select
-                                :options="options"
-                                :value="person.country"
-                                @input="(country) => updateCountry(person, country)"
-                                />
-                                <select id="bairro" v-for="bairro in listaBairros" :key="bairro.id">
-                                    <option value={{ bairro.id }}>{{ bairro.nome }}</option>
-                                </select> -->
+                            <!-- v-model="vBairro" -->
+                            <select  id="bairro">
+                                <option v-for="bairro in listaBairros" :key="bairro.id" :value="bairro.id">
+                                    {{ bairro.nome }}
+                                    <!-- <p id="pIdBairro">{{ bairro.id }}</p> -->
+                                    <!-- @input type="hidden" value="{{ bairro.id }}" -->
+                                </option>
+                            </select>
                         </label>
                     </div>
+
                     <label for="">Dias</label>
                     <div class="periodicidade">
                         <span>
@@ -101,6 +101,10 @@
                             <label for="sabado">Sábado</label>
                             <input type="checkbox" id="sabado" name="sabado">
                         </span>
+                        <span>
+                            <label for="domigo">Domingo</label>
+                            <input type="checkbox" id="domingo" name="domingo">
+                        </span>
                     </div>
     
                     <label for="">Turnos</label>
@@ -123,8 +127,8 @@
                         <label>
                             <span>Situação</span>
                             <select id="situacao">
-                                <option value="0">Inatívo</option>
-                                <option value="1">Ativo</option>
+                                <option value="INATIVO">Inatívo</option>
+                                <option value="ATIVO">Ativo</option>
                             </select>
                         </label>
                     </div>
@@ -137,16 +141,8 @@
     </div>
 </main>
 
-
 <script type="module">
     const novoRegistro = document.getElementById('novoRegistro');
-    // const segunda = document.getElementById('segunda');
-
-    // segunda.addEventListener("click",(evt)=>{
-    //     console.log(segunda.checked)
-    //     segunda.checked = true;
-    //     console.log(segunda.checked)
-    // });
 
     novoRegistro.addEventListener("click",(evt)=>{
         telaPopupCadastro.classList.remove("ocultaTelaPopupCadastro");
@@ -157,32 +153,21 @@
         setup() {
             let listaRotas = ref([]);
             let listaBairros = ref([]);
-            // let bairro = '';
-            // let toggle = segunda.checked.value;
+            atualizarListaBairros()
+            let diasString = '';
+            let turnosString ='';
             async function processaForm(){
-                let diasString = segunda.checked.value;
-                // console.log(segunda.value);
-
-                // if (segunda.checked){
-                //     diasString = '2';
-                // }
-                // console.log(diasString);
-                let turnosString ='Teste Turno';
-                let situacao = 'teste situaçao';
-                    
-                periodicidade();
-
                 let rota={
                     id: id.value,
                     descricao: descricao.value,
-                    bairro: 'Bairro Teste',
-                    dias: diasString,
-                    turnos: turnosString,
-                    situacao: 'Situacao'
+                    bairro: bairro.value,
+                    dias: periodicidade(),
+                    turnos: turnosFunc(),
+                    situacao: situacao.value
                 }
                 console.log(rota);
                 if (id.value == "0") {
-                    console.log('Entrou pra fazer o fetch!!!');
+                    // console.log('Entrou pra fazer o fetch!!!');
                     await fetch('/administracao/coletas', {
                         method: 'POST', // Specify the HTTP method as POST
                         headers: {
@@ -206,17 +191,96 @@
             }
 
             function periodicidade(){
-                console.log(segunda.checked);
-                // segunda.checked.value
+                let count = 0;
 
+                if (segunda.checked){
+                    diasString = 'Segunda';
+                    count += 1;
+                }
+                if (terca.checked){
+                    if (count > 0 ){
+                        diasString += ' - ';
+                    }
+                    diasString += 'Terça';
+                    count += 1;
+                }
+                if (quarta.checked){
+                    if (count > 0 ){
+                        diasString += ' - ';
+                    }
+                    diasString += 'Quarta';
+                    count += 1;
+                }
+                if (quinta.checked){
+                    if (count > 0 ){
+                        diasString += ' - ';
+                    }
+                    diasString += 'Quinta';
+                    count += 1;
+                }
+                if (sexta.checked){
+                    if (count > 0 ){
+                        diasString += ' - ';
+                    }
+                    diasString += 'Sexta';
+                    count += 1;
+                }
+                if (sabado.checked){
+                    if (count > 0 ){
+                        diasString += ' - ';
+                    }
+                    diasString += 'Sábado';
+                    count += 1;
+                }
+                if (domingo.checked){
+                    if (count > 0 ){
+                        diasString += ' - ';
+                    }
+                    diasString += 'Domingo';
+                    count += 1;
+                }
+
+                return diasString;
+            }
+
+            function turnosFunc(){
+                let count = 0;
+                if (manha.checked){
+                    turnosString += 'Manhã';
+                    count += 1;
+                }
+                if (tarde.checked){
+                    if (count > 0 ){
+                        turnosString += ' - ';
+                    }
+                    turnosString += 'Tarde';
+                    count += 1;
+                }
+                if (noite.checked){
+                    if (count > 0 ){
+                        turnosString += ' - ';
+                    }
+                    turnosString += 'Noite';
+                }
+                return turnosString;                
             }
 
             function limpaForm(){
                 descricao.value = '';
-                // bairro.value = '';
-                // diasString = '';
-                // turnosString = '';
-                // situacao.value = '';
+                bairro.value = '';
+                diasString = '';
+                turnosString = '';
+                situacao.value = '';
+                segunda.checked = false;
+                terca.checked = false;
+                quarta.checked = false;
+                quinta.checked = false;
+                sexta.checked = false;
+                sabado.checked = false;
+                domingo.checked = false;
+                manha.checked = false;
+                tarde.checked = false;
+                noite.checked = false;
             }
 
             function chamarTelaCadastro(){
@@ -306,6 +370,24 @@
                 }
             }
 
+            function atualizarListaBairros(){
+                fetch('/bairros')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        listaBairros.value = data;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+
+            
+
             atualizarLista()
             return {
                 processaForm,
@@ -317,6 +399,8 @@
                 limpaForm,
                 fecharTelaCadastro,
                 chamarTelaCadastro,
+                vBairro: 'Teste',
+                idSelecionado: null,
                 checked: true
             }
         }
