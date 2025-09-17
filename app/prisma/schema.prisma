@@ -56,29 +56,22 @@ enum Situacao {
 }
 
 model Bairro {
-  id            Int    @id @default(autoincrement())
-  nome          String
-  situacao      Situacao @default(ATIVO)
-  Rota Rota[]
+  id       Int      @id @default(autoincrement())
+  nome     String
+  situacao Situacao @default(ATIVO)
+  Rota     Rota[]
 }
 
 model Rota {
-  id        Int    @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   descricao String
-  bairro    Bairro @relation(fields: [id_bairro], references: [id])
+  bairro    Bairro   @relation(fields: [id_bairro], references: [id])
   id_bairro Int
   dias      String
   turnos    String
   situacao  Situacao @default(ATIVO)
 }
 
-/**
- * model Agenda {
- * id        Int    @id @default(autoincrement())
- * coleta    Coleta @relation(fields: [id_coleta], references: [id])
- * id_coleta Int
- * }
- */
 model Chamado {
   id               Int         @id @default(autoincrement())
   //status           Status      @default(PENDENTE)
