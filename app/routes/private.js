@@ -36,9 +36,6 @@ router.get('/administracao/bairros/cadastro', (req, res) => bairroController.cad
 router.post('/administracao/bairros', (req, res) => bairroController.inserir(req, res));
 router.put('/administracao/bairros/:id', (req, res) => bairroController.alterar(req, res));
 router.delete('/administracao/bairros/:id', (req, res) => bairroController.deletar(req, res));
-// router.post('/administracao/bairros', (req, res) => bairroController.inserir(req, res));
-// router.put('/administracao/bairros/:id', (req, res) => bairroController.alterar(req, res));
-// router.delete('/administracao/bairros/:id', (req, res) => bairroController.deletar(req, res));
 
 // CHAMADOS
 router.post('/administracao/chamados', (req, res) => chamadoController.inserir(req, res));
@@ -58,11 +55,6 @@ router.post('/administracao/fluxo-chamados', (req, res) => fluxoChamadoControlle
 router.get('/administracao/fluxo-chamados/:id', (req, res) => fluxoChamadoController.buscarPorId(req, res));
 router.put('/administracao/fluxo-chamados/:id', (req, res) => fluxoChamadoController.alterar(req, res));
 router.delete('/administracao/fluxo-chamados/:id', (req, res) => fluxoChamadoController.deletar(req, res));
-
-// router.get('/administracao/cronogramas/cadastro', (req, res) => cronogramaController.cadastro(req, res));
-// router.post('/administracao/cronogramas', (req, res) => cronogramaController.inserir(req, res));
-// router.put('/administracao/cronogramas/:id', (req, res) => cronogramaController.alterar(req, res));
-// router.delete('/administracao/cronogramas/:id', (req, res) => cronogramaController.deletar(req, res));
 
 router.get('/administracao/niveis/Cadastro', (req, res) => nivelController.cadastro(req, res));
 router.get('/administracao/niveis', (req, res) => nivelController.listar(req, res));

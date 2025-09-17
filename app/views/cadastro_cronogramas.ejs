@@ -43,7 +43,6 @@
         </table>
     </div>
     
-    <!-- ocultaTelaPopupCadastro -->
     <div id="telaPopupCadastro" class="telaPopupCadastro ocultaTelaPopupCadastro"> 
         <div class="telaFormCadastro">
             <div class="tituloFormulario">
@@ -64,12 +63,9 @@
                     <div class="subDivCadastro">
                         <label>
                             <span>Bairro</span>
-                            <!-- v-model="vBairro" -->
                             <select  id="bairro">
                                 <option v-for="bairro in listaBairros" :key="bairro.id" :value="bairro.id">
                                     {{ bairro.nome }}
-                                    <!-- <p id="pIdBairro">{{ bairro.id }}</p> -->
-                                    <!-- @input type="hidden" value="{{ bairro.id }}" -->
                                 </option>
                             </select>
                         </label>
@@ -165,9 +161,7 @@
                     turnos: turnosFunc(),
                     situacao: situacao.value
                 }
-                console.log(rota);
                 if (id.value == "0") {
-                    // console.log('Entrou pra fazer o fetch!!!');
                     await fetch('/administracao/coletas', {
                         method: 'POST', // Specify the HTTP method as POST
                         headers: {
@@ -239,7 +233,6 @@
                     diasString += 'Domingo';
                     count += 1;
                 }
-
                 return diasString;
             }
 
@@ -357,9 +350,7 @@
             }
 
             async function excluir(idRota){
-                // console.log('Id do bairro:' + idBairro);
                 if(confirm('Deseja Realmenete Excluir o Registro?')){
-                    // /administracao/bairros/:id
                     await fetch(`/administracao/bairros/${idRota}`, {
                         method: 'DELETE', 
                         headers: {
@@ -385,9 +376,6 @@
                         console.error('There was a problem with the fetch operation:', error);
                     });
             }
-
-            
-
             atualizarLista()
             return {
                 processaForm,

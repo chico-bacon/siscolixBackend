@@ -189,9 +189,7 @@
             }
 
             async function excluir(idBairro){
-                console.log('Id do bairro:' + idBairro);
                 if(confirm('Deseja Realmenete Excluir o Registro?')){
-                    // /administracao/bairros/:id
                     await fetch(`/administracao/bairros/${idBairro}`, {
                         method: 'DELETE', 
                         headers: {
