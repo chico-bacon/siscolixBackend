@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use('/', publicRoutes);
 app.use('/', privateRoutes);
+//app.use('/', auth, privateRoutes);
 
 const PORT = 3000;
 

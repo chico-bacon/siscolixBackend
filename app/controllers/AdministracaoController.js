@@ -3,7 +3,7 @@ export class AdministracaoController {
     administracao(request, response) {
         let nomePagina = '';
         // nomePagina = '';
-        
+        console.log('Rederizando administracao');
         response.render('administracao',{nomePagina});
     }
 }

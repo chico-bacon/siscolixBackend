@@ -1,10 +1,13 @@
 import { prismaClient } from '../database/prismaClient.js'
+import { AdministracaoController } from './AdministracaoController.js'
 // import { Nivel } from '@prisma/client'
 import pkg from '@prisma/client';
 const { Nivel } = pkg;
 
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+
+const administracaoController = new AdministracaoController();
 
 export class UsuarioController {
 
@@ -36,24 +39,30 @@ export class UsuarioController {
     async login(req, res) {
         try {
             const loginInfo = req.body;
+            console.log('DADO DO USUARIO: ' + loginInfo);
             const usuario = await prismaClient.usuario.findUnique({
                 where: {
                     email: loginInfo.email
                 },
             });
-
-            if (!loginInfo) {
+            console.log(usuario.senha);
+            if (!usuario) {
                 res.status(404).json({ message: "Usuario não existe!"});
+            } else {
+                const passwordMatch = await bcrypt.compare(loginInfo.senha, usuario.senha);
+                console.log('VALIDA SENHA: ' + passwordMatch);
+                if (!passwordMatch) {
+                    res.status(404).json({ message: "Senha incorreta!"});
+                } else {
+                    const JWT_SECRET = process.env.JWT_SECRET
+                    const token = jwt.sign({ id: usuario.id, email:usuario.email, senha:usuario.senha, id_nivel: usuario.id_nivel }, JWT_SECRET, {expiresIn: '10m'})
+                    //administracaoController.administracao(req, res);
+                    // res.status(200).json(token);
+                    console.log('Renderizar pagina!');
+                    res.render('administracao');
+                }
             }
 
-            const passwordMatch = await bcrypt.compare(loginInfo.senha, usuario.senha);
-
-            if (!passwordMatch) {
-                res.status(404).json({ message: "Senha incorreta!"});
-            }
-            const JWT_SECRET = process.env.JWT_SECRET
-            const token = jwt.sign({ id: usuario.id, email:usuario.email, senha:usuario.senha, id_nivel: usuario.id_nivel }, JWT_SECRET, {expiresIn: '10m'})
-            res.status(200).json(token);
         } catch(error) {
             res.status(500).json({message: "Erro no servidor!"});
             console.log(error);

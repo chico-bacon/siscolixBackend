@@ -28,7 +28,7 @@ const fluxoChamadoController = new FluxoChamadoController();
 
 router.get(['/', '/index'], (req, res) => indexController.index(req, res));
 router.get('/contatos', (req, res) => contatosController.contatos(req, res))
-router.get('/administracao', (req, res) => administracaoController.administracao(req, res));
+// router.get('/administracao', (req, res) => administracaoController.administracao(req, res));
 
 router.get('/bairros', (req, res) => bairroController.listar(req, res));
 router.get('/bairros/:id', (req, res) => bairroController.buscarPorId(req, res));

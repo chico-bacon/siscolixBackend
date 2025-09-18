@@ -23,11 +23,11 @@
                 <!-- <div class="imgUser">
                 </div> -->
                 <!-- <p>Faça se</p> -->
-                <form action="/administracao">
+                <form @submit.prevent="processaForm()">
                     <span>
                         <!-- <label for="username">Usuário</label> -->
                         <img src="img/icons/user.svg" alt="">
-                        <input type="text" name="username" id="username">
+                        <input type="text" name="email" id="email">
                     </span>
                     <span>
                         <!-- <label for="senha">Senha</label> -->
@@ -41,7 +41,7 @@
                     
                     <div class="botoesEntrarCancelar">
                         <button class="botaoPadrao">Entrar</button>
-                        <button class="botaoPadrao" onclick="'/administracao'">Cancelar</button>
+                        <!-- <button class="botaoPadrao" onclick="'/'">Cancelar</button> -->
                     </div>
 
                 </form>
@@ -50,6 +50,62 @@
 
 
     </main>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <!-- <script src="https://unpkg.com/vue-router@4"></script> -->
+    <script type="module" >
+        import { createApp, ref, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+        // import { useRouter } from 'https://unpkg.com/vue-router@4';
+        createApp({
+            setup() {
+                
+                // const router = useRouter();
+                
+                async function processaForm(){
+                    console.log('Entrando em processa form')
+                    let informacoesLogin={
+                        email: email.value,
+                        senha: senha.value
+                    }
+                    await fetch('/login', {
+                        method: 'POST', // Specify the HTTP method as POST
+                        headers: {
+                            'Content-Type': 'application/json' // Indicate that the body is JSON
+                        },
+                        body: JSON.stringify(informacoesLogin) // Convert the JavaScript object to a JSON string
+                    });
+                    // .then(token => {
+                    //     console.log(token.status);
+                    //     if (token.status == 200) {
+                    //         telaAdministracao()
+                    //     }
+                    // });
+                }
+                // async function telaAdministracao() {
+                //     console.log('Redereizando Admini')
+                //     await this.$router.push('/administracao');
+                // } 
+                return {
+                    processaForm
+                    // telaAdministracao,                    
+                }
+            }
+        }).mount('main')
+        // createApp({
+        //     setup() {
+        //         async function processaForm() {
+        //             let informacoesLogin={
+        //                 email: email.value,
+        //                 senha: senha.value
+        //             }
+        //             console.log(informacoesLogin);
+        //             // 
+        //         }
+        //         return {
+        //             informacoesLogin
+        //         }
+        //     }
+        // }).mount('main')
+    </script>
     <%- include('rodape') %>
 </body>
 </html>

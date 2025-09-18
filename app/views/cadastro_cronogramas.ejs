@@ -156,11 +156,12 @@
                 let rota={
                     id: id.value,
                     descricao: descricao.value,
-                    bairro: bairro.value,
+                    id_bairro: bairro.value,
                     dias: periodicidade(),
                     turnos: turnosFunc(),
                     situacao: situacao.value
                 }
+                console.log(rota);
                 if (id.value == "0") {
                     await fetch('/administracao/coletas', {
                         method: 'POST', // Specify the HTTP method as POST

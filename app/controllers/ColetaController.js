@@ -34,6 +34,7 @@ export class ColetaController {
 
     async inserir(req, res) {
         console.log('Entro no Inserir!!!');
+        console.log(req.body);
         try {
             const novaRota = await prismaClient.rota.create({
                 data: {

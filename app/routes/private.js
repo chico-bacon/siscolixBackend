@@ -8,6 +8,8 @@ import { ColetaController } from "../controllers/ColetaController.js";
 import { FluxoChamadoController } from "../controllers/FluxoChamadoController.js"; 
 import { UsuarioController } from "../controllers/UruariosController.js";
 
+import { AdministracaoController } from "../controllers/AdministracaoController.js";
+
 const router = new Router();
 
 const agendaController = new AgendaController();
@@ -17,8 +19,10 @@ const chamadoController = new ChamadoController();
 const coletaController = new ColetaController();
 const fluxoChamadoController = new FluxoChamadoController();
 const usuarioController = new UsuarioController();
+const administracaoController = new AdministracaoController();
 
 //ROTAS PRIVADAS DE GERENCIAMENTO DE AGENDAS
+router.get('/administracao', (req, res) => administracaoController.administracao(req, res));
 router.post('/administracao/agendas', (req, res) => agendaController.inserir(req, res));
 router.put('/administracao/agendas/:id', (req, res) => agendaController.alterar(req, res));
 router.delete('/administracao/agendas/:id', (req, res) => agendaController.deletar(req, res));
